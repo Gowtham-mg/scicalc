@@ -6,7 +6,6 @@ import '../widgets/keyboard_row.dart';
 import '../model/calc.dart';
 
 
-
 class CalcHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,18 +20,6 @@ class CalcHomePage extends StatelessWidget {
               return SelectableText(
                 exp,
                 autofocus: true,
-                style: TextStyle(
-                  fontSize: 30,
-                  letterSpacing: 2
-                ),
-              );
-              } 
-            )),
-            Expanded(child: Consumer(
-              (context, read){
-              final resultText = read(result).state.toString();
-              return SelectableText(
-                resultText,
                 style: TextStyle(
                   fontSize: 30,
                   letterSpacing: 2
