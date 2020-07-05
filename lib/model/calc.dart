@@ -1,6 +1,6 @@
 import 'package:scicalc/calc_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../screens/background.dart';
+import '../screens/modes_of_calc.dart';
 import 'package:petitparser/petitparser.dart';
 import 'dart:math' as math;
 

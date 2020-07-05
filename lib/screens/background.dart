@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
+import 'package:scicalc/screens/calc_home_page.dart';
+import 'modes_of_calc.dart';
 
-final keyboardType = StateProvider((ref)=>false);
+
 class BackGround extends StatelessWidget {
   final Widget _child;
   BackGround(this._child);
@@ -14,15 +14,6 @@ class BackGround extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.autorenew),
-            onPressed: (){
-              keyboardType.read(context).state = !keyboardType.read(context).state;
-              print(keyboardType.read(context).state);
-              keyboardType.read(context).state ? SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]) : SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-              // evaluate(context);
-            },
-          ),
-          IconButton(
             icon: Icon(Icons.save),
             onPressed: (){
               
@@ -30,8 +21,16 @@ class BackGround extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        child: _child
+      body: PageView(
+        onPageChanged: (index){
+          CalcHomePage(index);
+        },
+        children:[
+          Container(
+            child: _child
+          ),
+          Container(child: Modes(),)
+        ]
       ),
     );
   }

@@ -4,9 +4,12 @@ import 'package:scicalc/calc_constants.dart';
 import 'background.dart';
 import '../widgets/keyboard_row.dart';
 import '../model/calc.dart';
+import 'modes_of_calc.dart';
 
 
 class CalcHomePage extends StatelessWidget {
+  final index;
+  CalcHomePage(this.index);
   @override
   Widget build(BuildContext context) {
     return BackGround(
@@ -35,21 +38,7 @@ class CalcHomePage extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: keyBoardType? keyboardScientificCalculator.map((signs) {
-                        return Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: KeyboardRows(
-                            rowsButtons: signs
-                          ),
-                        );
-                      }).toList() : keyboardSingleCalculator.map((signs) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: KeyboardRows(
-                            rowsButtons: signs
-                          ),
-                        );
-                      }).toList(),
+                      children: index==1 ? buildKeyboardSingleCalculator() : buildKeyboardScientificCalculator(),
                     ),
                   ),
                 );
@@ -60,5 +49,23 @@ class CalcHomePage extends StatelessWidget {
       ),
     );
   }
+
+  List buildKeyboardSingleCalculator() => keyboardSingleCalculator.map((signs) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: KeyboardRows(
+                            rowsButtons: signs
+                          ),
+                        );
+                      }).toList();
+
+  List buildKeyboardScientificCalculator() => keyboardScientificCalculator.map((signs) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: KeyboardRows(
+                            rowsButtons: signs
+                          ),
+                        );
+                      }).toList();
 }
 

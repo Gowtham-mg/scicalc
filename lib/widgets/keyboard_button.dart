@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../calc_constants.dart';
 import '../model/calc.dart';
-import '../screens/background.dart';
+import '../screens/modes_of_calc.dart';
+
 
 List l = [kEqualSign, kClearSign, kDelSign];
 class KeyboardButton extends StatelessWidget {
