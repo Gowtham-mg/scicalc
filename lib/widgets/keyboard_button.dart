@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scicalc/calc_constants.dart';
-import 'package:scicalc/model/calc.dart';
+import '../calc_constants.dart';
+import '../model/calc.dart';
+import '../screens/background.dart';
 
 List l = [kEqualSign, kClearSign, kDelSign];
 class KeyboardButton extends StatelessWidget {
@@ -26,14 +27,16 @@ class KeyboardButton extends StatelessWidget {
           ),
           onPressed: () {
             var exp = inputExpression.read(context).state;
-            if(!l.contains(button)){
-              exp += button;
-              inputExpression.read(context).state = exp;
-            }
-            else{
+            if(l.contains(button) || button == '+/-'){
               evaluate(context, exp, button);
             }
+            else{
+              print(button);
+              exp += button;
+              inputExpression.read(context).state = exp;            
+            }
             print(exp);
+            print(keyboardType.read(context).state);
           },
         ),
     );

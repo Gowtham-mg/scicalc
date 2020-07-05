@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter/services.dart';
 
 final keyboardType = StateProvider((ref)=>false);
 class BackGround extends StatelessWidget {
@@ -18,12 +18,15 @@ class BackGround extends StatelessWidget {
             onPressed: (){
               keyboardType.read(context).state = !keyboardType.read(context).state;
               print(keyboardType.read(context).state);
+              keyboardType.read(context).state ? SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]) : SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
               // evaluate(context);
             },
           ),
           IconButton(
             icon: Icon(Icons.save),
-            // onPressed: ,
+            onPressed: (){
+              
+            },
           )
         ],
       ),
