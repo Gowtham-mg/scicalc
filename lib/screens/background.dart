@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scicalc/screens/calc_home_page.dart';
 import 'modes_of_calc.dart';
+import 'matrix_screen.dart';
 
 
 class BackGround extends StatelessWidget {
@@ -23,7 +24,7 @@ class BackGround extends StatelessWidget {
       ),
       body: PageView(
         onPageChanged: (index){
-          CalcHomePage(index);
+          print(index);
         },
         children:[
           Container(

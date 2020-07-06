@@ -3,13 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scicalc/calc_constants.dart';
 import 'background.dart';
 import '../widgets/keyboard_row.dart';
-import '../model/calc.dart';
+import '../helper/calc_helper.dart';
 import 'modes_of_calc.dart';
 
 
 class CalcHomePage extends StatelessWidget {
-  final index;
-  CalcHomePage(this.index);
   @override
   Widget build(BuildContext context) {
     return BackGround(
@@ -17,7 +15,9 @@ class CalcHomePage extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            Expanded(child: Consumer(
+            Expanded(
+              flex: 1,
+              child: Consumer(
               (context, read){
               final exp = read(inputExpression).state.toString();
               return SelectableText(
@@ -30,22 +30,26 @@ class CalcHomePage extends StatelessWidget {
               );
               } 
             )),
-            Consumer(
-                (context, read){
-                final keyBoardType = read(keyboardType).state;
-                return Container(
-                  height: MediaQuery.of(context).size.height*0.55,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: index==1 ? buildKeyboardSingleCalculator() : buildKeyboardScientificCalculator(),
-                    ),
+            Consumer((context, read){
+              final keyBoardType = read(keyboardType).state;
+              return Expanded(
+              flex: keyBoardType? 4 : 3,
+              child: Container(
+                // height: MediaQuery.of(context).size.height*0.60,
+                child:keyBoardType? SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: buildKeyboardScientificCalculator(),
                   ),
-                );
-                }
-            )
-          ],
-        )
+                ) : Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: buildKeyboardSingleCalculator(),
+                  )
+                ),
+              );
+            }
+          )
+        ],)
       ),
     );
   }

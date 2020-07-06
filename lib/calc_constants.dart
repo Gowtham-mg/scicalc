@@ -20,7 +20,7 @@ const kArcTanSign = 'atan';
 const kLeftParanthesis = '(';
 const kRightParanthesis = ')';
 const kEqualSign = '=';
-const kClearSign = 'AC';
+const kClearAllSign = 'AC';
 const kPiSign = 'π';
 const kESign = 'e';
 const kDelSign = '⌫';
@@ -42,10 +42,10 @@ const kOctalSign = '10^8';
 const kHexaDecimalSign = '10^16';
 const kDecimalSign = '10^10';
 const kotherCharacters = '';
-
+const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
 
 const keyboardSingleCalculator = [
-  [kClearSign, kNegate, kModulusSign, kDivisionSign],
+  [kClearAllSign, kNegate, kModulusSign, kDivisionSign],
   [kMultiplicationSign, kSeven, kEight, kNine],
   [kMinusSign, kFour, kFive, kSix],
   [kPlusSign, kOne, kTwo, kThree],
@@ -53,10 +53,10 @@ const keyboardSingleCalculator = [
 ];
 
 const keyboardScientificCalculator = [
-  [kLeftParanthesis, kRightParanthesis, kSineSign, kCosSign, kTanSign,kLogSign, kRadSign],
-  [kDivisionSign, kClearSign, kDelSign, kModulusSign, kLonSign, kLon2Sign, kBinSign],
-  [kMultiplicationSign, kSeven, kEight, kNine, kPowerSign, kDegSign, kOctalSign],
-  [kMinusSign, kFour, kFive, kSix, kSquareRootSign, kArcSineSign, kHexaDecimalSign],
-  [kPlusSign, kOne, kTwo, kThree, kPiSign, kArcCosSign, kDecimalSign],
-  [kEqualSign, kESign, kZero, kDecimalPointSign, kNegate, kArcTanSign, kChangeMode]
+  [kLeftParanthesis, kRightParanthesis, kSineSign, kCosSign, kTanSign,kLogSign],
+  [kDivisionSign, kClearAllSign, kDelSign, kModulusSign, kLonSign, kLon2Sign],
+  [kMultiplicationSign, kSeven, kEight, kNine, kPowerSign, kDegSign],
+  [kMinusSign, kFour, kFive, kSix, kSquareRootSign, kArcSineSign],
+  [kPlusSign, kOne, kTwo, kThree, kPiSign, kArcCosSign],
+  [kEqualSign, kESign, kZero, kDecimalPointSign, kNegate, kArcTanSign]
 ];

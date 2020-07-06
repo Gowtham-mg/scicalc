@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../calc_constants.dart';
-import '../model/calc.dart';
+import '../helper/calc_helper.dart';
 import '../screens/modes_of_calc.dart';
 
 
-List l = [kEqualSign, kClearSign, kDelSign];
+List l = [kEqualSign, kClearAllSign, kDelSign];
 class KeyboardButton extends StatelessWidget {
   final String button;
   KeyboardButton({this.button});
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: MaterialButton(
           shape: CircleBorder(),
           color: Color(0xFFFFFFFF),
@@ -30,8 +30,10 @@ class KeyboardButton extends StatelessWidget {
             var exp = inputExpression.read(context).state;
             if(l.contains(button) || button == '+/-'){
               evaluate(context, exp, button);
-            }
-            else{
+            }else if(arithmetic.contains(button)){
+              exp += ' '+ button +' ';
+              inputExpression.read(context).state = exp;
+            }else{
               print(button);
               exp += button;
               inputExpression.read(context).state = exp;            
