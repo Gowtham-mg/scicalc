@@ -5,12 +5,16 @@ import 'matrix_screen.dart';
 
 
 class BackGround extends StatelessWidget {
-  final Widget _child;
-  BackGround(this._child);
+  final Widget child;
+  final color;
+  BackGround({this.child, this.color});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: color,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.redAccent.shade200,
         title: Text('SciCalc'),
         centerTitle: true,
         actions: [
@@ -28,7 +32,7 @@ class BackGround extends StatelessWidget {
         },
         children:[
           Container(
-            child: _child
+            child: child
           ),
           Container(child: Modes(),)
         ]

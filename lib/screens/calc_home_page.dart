@@ -11,7 +11,7 @@ class CalcHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackGround(
-      Container(
+      child: Container(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
@@ -51,6 +51,7 @@ class CalcHomePage extends StatelessWidget {
           )
         ],)
       ),
+      color: kWhiteColor
     );
   }
 

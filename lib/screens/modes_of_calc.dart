@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
+import 'package:scicalc/calc_constants.dart';
 import 'background.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
+import 'bmi_screen.dart';
+
 
 final keyboardType = StateProvider((ref)=>false);
 class Modes extends StatelessWidget {
@@ -27,12 +29,15 @@ class Modes extends StatelessWidget {
           icon: Icons.grid_on, 
           iconName: 'Matrix', 
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(MatrixScreen())));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen(), color: kWhiteColor,)));
           },
         ),
         GridItem(
           icon: Icons.accessibility, 
           iconName: 'BMI',
+          screen: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: BMIScreen(), color: Color(0xFFF4F6FD))));
+          },
         ),
         GridItem(
           icon: Icons.av_timer, 
