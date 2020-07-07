@@ -46,7 +46,7 @@ const kDecimalSign = '10^10';
 const kotherCharacters = '';
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
 
-const keyboardSingleCalculator = [
+const keyboardSimpleCalculator = [
   [kClearAllSign, kNegate, kModulusSign, kDivisionSign],
   [kMultiplicationSign, kSeven, kEight, kNine],
   [kMinusSign, kFour, kFive, kSix],

@@ -43,7 +43,7 @@ class CalcHomePage extends StatelessWidget {
                   ),
                 ) : Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: buildKeyboardSingleCalculator(),
+                    children: buildKeyboardSimpleCalculator(),
                   )
                 ),
               );
@@ -55,7 +55,7 @@ class CalcHomePage extends StatelessWidget {
     );
   }
 
-  List buildKeyboardSingleCalculator() => keyboardSingleCalculator.map((signs) {
+  List buildKeyboardSimpleCalculator() => keyboardSimpleCalculator.map((signs) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: KeyboardRows(

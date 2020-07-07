@@ -4,7 +4,7 @@ import 'package:scicalc/calc_constants.dart';
 import 'background.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
-import 'bmi_screen.dart';
+import 'bmi_screens/bmi_screen.dart';
 
 
 final keyboardType = StateProvider((ref)=>false);

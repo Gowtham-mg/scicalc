@@ -27,13 +27,12 @@ void evaluate(context, exp, operand){
     break;
     case kEqualSign: keyboardType.read(context).state ? _calculateScientificCalculator() : 
     _calculateSimpleResult();
-      // splitExpressions(tempExpression, context);
-      
+      // splitExpressions(tempExpression, context);    
     break;
     case '+/-': _negateResult();
   }
   
-  inputExpression.read(context).state = operand == kEqualSign ? result : tempExpression;
+  inputExpression.read(context).state = operand == kEqualSign || operand == '+/-' ? result : tempExpression;
 }
 
 void _clear(){
@@ -42,7 +41,8 @@ void _clear(){
 }
 
 void _negateResult(){
-  result = result == '' ? (-1*int.parse(tempExpression)).toString() : (-1*int.parse(result)).toString();
+  print('ngateResult');
+  result = result.isEmpty ? (-1*(int.parse(tempExpression))).toString() : (-1*(int.parse(result))).toString();
 }
 
 void _deleteValue(){
@@ -51,7 +51,8 @@ void _deleteValue(){
 }
 
 void _calculateSimpleResult(){
-  
+  tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
+  tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   parser = buildExpression().build();
   _tryComputeResult();
 }
@@ -105,8 +106,10 @@ buildExpression(){
   builder.group()..right(char('^').trim(), (a, op, b) => math.pow(a, b));
 
   builder.group()
-    ..left(char('×').trim(), (a, op, b) => a * b)
-    ..left(char('÷').trim(), (a, op, b) => a / b)
+    ..left(char('*').trim(), (a, op, b) => a * b);
+
+  builder.group()
+    ..left(char('/').trim(), (a, op, b) => a / b)
     ..left(char('%').trim(), (a, op, b) => a % b);
   builder.group()
   ..left(char('+').trim(), (a, op, b) => a + b)
