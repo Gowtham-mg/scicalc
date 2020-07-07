@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scicalc/calc_constants.dart';
-import 'background.dart';
+
+import 'distance_calc.dart';
+import '../calc_constants.dart';
+import 'speed_calc.dart';
+import 'background_constant.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
 import 'bmi_screens/bmi_screen.dart';
@@ -42,6 +45,9 @@ class Modes extends StatelessWidget {
         GridItem(
           icon: Icons.av_timer, 
           iconName: 'Speed',
+          screen: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: SpeedCalc(),) ));
+          },
         ),
         GridItem(
           icon: Icons.cloud, 
@@ -50,6 +56,9 @@ class Modes extends StatelessWidget {
         GridItem(
           icon: Icons.directions_bike, 
           iconName: 'Distance',
+          screen: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc())));
+          },
         )
       ],
     );

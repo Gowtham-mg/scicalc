@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../calc_constants.dart';
+import '../../calc_constants.dart';
 
 class BottomButton extends StatelessWidget{
 
