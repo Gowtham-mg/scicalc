@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+
+import 'package:scicalc/helper/length_convert.dart';
 
 class DistanceCalc extends StatefulWidget {
   @override
@@ -11,7 +12,6 @@ class _DistanceCalcState extends State<DistanceCalc> {
   var input1controller = TextEditingController(text: '');
 
   var input2controller = TextEditingController(text: '');
-
 
   final Widget sizedBox = SizedBox(width: 10,);
 
@@ -25,64 +25,33 @@ class _DistanceCalcState extends State<DistanceCalc> {
 
   bool isInput1Changed = false;
 
-  bool isInput2Changed = false;
+  bool isInput1ModeChanged = false;
   
   void convertDistance(){
     print('');
     print('value1: $input1');
     print('value2: $input2');
     print('isInput1Changed: $isInput1Changed');
-    print('isInput2Changed: $isInput2Changed');
-
     var len1; 
-    len1 = input1;
     var len2;
-    len2 = input2;
-    try{
-      if(len1.contains('.')){
-        len1 = double.parse(len1);
-        len2 = double.parse(len2);
-      }else{
-        len1 = int.parse(len1);
-        len2 = int.parse(len2);
-      }
-    }catch(e){
-      return;
-    }
-    
-    print('after parsing value1: $input1 $len1');
-    print('after parsing value2: $input2 $len2');
-    print('input1mode: $input1Mode');
-    print('input2mode: $input2Mode');
-
-    switch(input1Mode){
-      case 'mm': break;
-      case 'cm': len1 = len1 * 10;break;
-      case 'in': len1 = len1 * 25.4;break;
-      case 'm': len1 = len1 * 1000;break;
-      case 'km': len1 = len1 * 1000000;break;
-      case 'mile': len1 = len1 * 1609000000;break;
-      case 'ft': len1 = len1 * 304.8;break;
-      case 'yd': len1 = len1 * 914.4;break;
-    }
-    print('len1: $len1');
-
-    switch(input2Mode){
-      case 'mm': len2 = len1;break;
-      case 'cm': len2 = len1 * 0.1;break;
-      case 'in': len2 = len1 * 0.0393701;break;
-      case 'm': len2 = len1 * 0.001;break;
-      case 'km': len2 = len1 * math.pow(10, -6);break;
-      case 'mile': len2 = (len1 * 6.2137) * math.pow(10, -7);break;
-      case 'ft': len2 = len1 * 0.00328084;break;
-      case 'yd': len2 = len1 * 0.00109361;break;
-    }
     if(isInput1Changed){
-      input1controller.text = len2.toString();
+      len1 = int.tryParse(input1) ?? double.tryParse(input1) ?? 'invalid input';
+      if(len1 == 'invalid input') return;
+    }else{
+      len2 = int.tryParse(input2) ?? double.tryParse(input2) ?? 'invalid input';
+      if(len2 == 'invalid input') return;
     }
-    if(isInput2Changed){
-      input2controller.text = len1.toString();
+    num parsedValue = isInput1Changed ? len1 : len2;
+    num calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+    
+    if(isInput1Changed){
+      input2controller.text = calculatedValue.toString();
+    }else{
+      input1controller.text = calculatedValue.toString();
     }
+    setState(() {
+      
+    });
   }
 
   @override
@@ -98,7 +67,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
               child: Column(
                 children: [
                   DropdownButton<String>(
-                      items: <String>['mm', 'cm', 'in', 'm', 'km', 'mile', 'ft', 'yd'].map((String value) {
+                      items: <String>['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'].map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: new Text(value),
@@ -107,6 +76,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                       value: input1Mode,
                       onChanged: (val) {
                         setState(() {
+                          isInput1ModeChanged = true;
                           input1Mode = val;
                           convertDistance();
                         });
@@ -131,10 +101,8 @@ class _DistanceCalcState extends State<DistanceCalc> {
                           setState(() {
                             print('value1: $value');
                             isInput1Changed = true;
-                            isInput2Changed = false;
                             input1 = value;
-                            print('isInput1Changed: $isInput1Changed');                        
-                            print('isInput2Changed: $isInput2Changed');
+                            print('isInput1Changed: $isInput1Changed');
                             convertDistance();
                           });
                         },
@@ -147,7 +115,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
               child: Column(
                 children: [
                   DropdownButton<String>(
-                      items: <String>['mm', 'cm', 'in', 'm', 'km', 'mile', 'ft', 'yd'].map((String value) {
+                      items: <String>['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'].map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -156,6 +124,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                       value: input2Mode,
                       onChanged: (val) {
                         setState(() {
+                          isInput1ModeChanged = false;
                           input2Mode = val;
                           convertDistance();
                         });
@@ -180,10 +149,8 @@ class _DistanceCalcState extends State<DistanceCalc> {
                       setState(() {
                         print('value2: $value');
                         isInput1Changed = false;
-                        isInput2Changed = true;
                         input2 = value;
                         print('isInput1Changed: $isInput1Changed');
-                        print('isInput2Changed: $isInput2Changed');
                         convertDistance();
                       });
                     },

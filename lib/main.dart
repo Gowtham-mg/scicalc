@@ -5,10 +5,10 @@ import 'screens/calc_home_page.dart';
 
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: SciCalc()));
 }
 
-class MyApp extends StatelessWidget {
+class SciCalc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
