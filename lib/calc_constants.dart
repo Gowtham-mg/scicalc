@@ -55,7 +55,7 @@ const List<String> kDistanceCalc = ['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'm
 
 const List<String> kTemperatureCalc = ['°C', '°F', 'K', '°Ra', '°Re'];
 
-const List<String> kSpeedCalc = ['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'];
+const List<String> kSpeedCalc = ['mph', 'ft/s', 'm/s', 'kt', 'kph'];
 
 const keyboardSimpleCalculator = [
   [kClearAllSign, kNegate, kModulusSign, kDivisionSign],

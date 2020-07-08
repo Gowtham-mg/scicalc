@@ -40,6 +40,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
 
   void convertDistance(){
     print('');
+    print('input2Mode: $input2Mode');
     print('value1: $input1');
     print('value2: $input2');
     print('isInput1Changed: $isInput1Changed');
@@ -53,16 +54,19 @@ class _DistanceCalcState extends State<DistanceCalc> {
       len2 = int.tryParse(input2) ?? double.tryParse(input2) ?? 'invalid input';
       if(len2 == 'invalid input') return;
     }
-    
+    print('len1: $len1');
+    print('len2: $len2');
+    print('isInput1ModeChanged $isInput1ModeChanged');    
+
     num parsedValue = isInput1Changed ? len1 : len2;
     num calculatedValue;
-
+    print('parsedValue: $parsedValue');
     switch(widget.calcMode){
       case 'distance_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
         break;
-      case 'speed_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+      case 'speed_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedSpeed(input1Mode, input2Mode, parsedValue) : getCalculatedSpeed(input2Mode, input1Mode, parsedValue);
         break;
-      case 'temperature_calc': print('$calculatedValue $isInput1ModeChanged $isInput1Changed');calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedTemperature(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+      case 'temperature_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedTemperature(input1Mode, input2Mode, parsedValue) : getCalculatedTemperature(input2Mode, input1Mode, parsedValue);
         break;
     }
         
@@ -152,7 +156,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                   SizedBox(height: MediaQuery.of(context).size.height*0.3,),
                   DropdownButton<String>(
                       items: calcDropDownButtons.map((String value) {
-                        return new DropdownMenuItem<String>(
+                        return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );

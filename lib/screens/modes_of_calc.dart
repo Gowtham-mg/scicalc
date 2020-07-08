@@ -49,7 +49,7 @@ class Modes extends StatelessWidget {
           icon: Icons.av_timer, 
           iconName: 'Speed',
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('speed_calc', 'cm', 'km'),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('speed_calc', 'mph', 'kph'),) ));
           },
         ),
 
