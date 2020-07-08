@@ -49,6 +49,8 @@ const kAppBarTitleConstant = 'SciCalc';
 
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
 
+const complex = [kSineSign, kCosSign, kTanSign, kLogSign];
+
 const List<String> evalSpecialCharacters = [kEqualSign, kClearAllSign, kDelSign];
 
 const List<String> kDistanceCalc = ['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'];

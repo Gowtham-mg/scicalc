@@ -29,7 +29,7 @@ class KeyboardButton extends StatelessWidget {
             var exp = inputExpression.read(context).state;
             if(evalSpecialCharacters.contains(button) || button == '+/-'){
               evaluate(context, exp, button);
-            }else if(arithmetic.contains(button)){
+            }else if(arithmetic.contains(button) || complex.contains(button)){
               exp += ' '+ button +' ';
               inputExpression.read(context).state = exp;
             }else{

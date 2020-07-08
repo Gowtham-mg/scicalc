@@ -41,6 +41,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
   void convertDistance(){
     print('');
     print('input2Mode: $input2Mode');
+    print('input1Mode: $input1Mode');
     print('value1: $input1');
     print('value2: $input2');
     print('isInput1Changed: $isInput1Changed');
@@ -58,7 +59,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
     print('len2: $len2');
     print('isInput1ModeChanged $isInput1ModeChanged');    
 
-    num parsedValue = isInput1Changed ? len1 : len2;
+    num parsedValue = isInput1Changed || isInput1ModeChanged ? len1 : len2;
     num calculatedValue;
     print('parsedValue: $parsedValue');
     switch(widget.calcMode){

@@ -59,14 +59,17 @@ void _calculateSimpleResult(){
 void _calculateScientificCalculator(){
   print('1');
   parser = buildExpressionComplex().build();
-
+  print('tempExpression $tempExpression');
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
+  tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
+  tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
+  
   // tempExpression = tempExpression.replaceAll(kESign, 'e^1');
   // tempExpression = tempExpression.replaceAll(kPowerSign, '^');
   // tempExpression = tempExpression.replaceAll(kArcSineSign, 'arcsin');
   // tempExpression = tempExpression.replaceAll(kArcCosSign, 'arccos');
   // tempExpression = tempExpression.replaceAll(kArcTanSign, 'arctan');
-  // tempExpression = tempExpression.replaceAll(kLogSign, 'log');
+  tempExpression = tempExpression.replaceAll(kLogSign, 'log');
   // _tryComputeResult();
   _tryComputeResult();
 }
@@ -113,8 +116,9 @@ buildExpression(){
   builder.group()
   ..left(char('+').trim(), (a, op, b) => a + b)
   ..left(char('-').trim(), (a, op, b) => a - b);
+
   builder.group()
-  ..left(char('.').trim(), (a, op, b) => '$a.$b');
+    ..left(char(kCosSign).trim(), (a, op, b) => a * math.cos(b));
   return builder;
 }
 
@@ -136,7 +140,28 @@ buildExpressionComplex(){
     builder.group()
       ..left(string(kSineSign).trim(), (a, op, b) => a*(math.sin(b)));
     builder.group()
-      ..prefix(string(kSineSign).trim(), (op, l) => math.sin(l*(3.141592653589793238/180))); 
+      ..prefix(string(kSineSign).trim(), (op, l) => math.sin(l));
+    builder.group()
+      ..left(string(kCosSign).trim(), (a, op, b) => a*(math.cos(b)));
+    builder.group()
+      ..prefix(string(kCosSign).trim(), (op, l) => math.cos(l));
+    builder.group()
+      ..left(string(kTanSign).trim(), (a, op, b) => a*(math.tan(b)));
+    builder.group()
+      ..prefix(string(kTanSign).trim(), (op, l) => math.tan(l));
+    builder.group()
+      ..prefix(string('log').trim(), (op, l) => math.log(l));
+
+  builder.group()
+    ..left(char('*').trim(), (a, op, b) => a * b);
+
+  builder.group()
+    ..left(char('/').trim(), (a, op, b) => a / b)
+    ..left(char('%').trim(), (a, op, b) => a % b);
+  builder.group()
+  ..left(char('+').trim(), (a, op, b) => a + b)
+  ..left(char('-').trim(), (a, op, b) => a - b);
+
   return builder;
 }
 
