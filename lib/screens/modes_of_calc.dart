@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'temperature_calc.dart';
 
 import 'distance_calc.dart';
 import '../calc_constants.dart';
-import 'speed_calc.dart';
 import 'background_constant.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
