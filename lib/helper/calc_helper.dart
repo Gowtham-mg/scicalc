@@ -1,5 +1,6 @@
 import 'package:scicalc/calc_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scicalc/model/build_expression_class.dart';
 import '../screens/modes_of_calc.dart';
 import 'package:petitparser/petitparser.dart';
 import 'dart:math' as math;
@@ -8,8 +9,8 @@ import 'package:function_tree/function_tree.dart';
 String result = '';
 final inputExpression = StateProvider((ref) => '');
 var tempExpression = '';
+final ExpressionBuilder expressionBuilder = BuildExpressionClass().buildExpressionComplex();
 var parser;
-
 
 void evaluate(context, exp, operand){
 
@@ -48,13 +49,13 @@ void _deleteValue(){
 void _calculateSimpleResult(){
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
-  parser = buildExpression().build();
+  parser = expressionBuilder.build();
   _tryComputeResult();
 }
 
 void _calculateScientificCalculator(){
   print('1');
-  parser = buildExpressionComplex().build();
+  parser = expressionBuilder.build();
   print('tempExpression $tempExpression');
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
@@ -79,77 +80,4 @@ void _tryComputeResult(){
   } catch (e) {
     print('error $e');
   }
-}
-
-buildExpression(){
-  final builder = ExpressionBuilder();
-  builder.group()
-  ..primitive(digit()
-      .plus()
-      .seq(char('.').seq(digit().plus()).optional())
-      .flatten()
-      .trim()
-      .map((a) => num.tryParse(a)))
-  ..wrapper(char('(').trim(), char(')').trim(), (l, a, r) => a);
-
-  builder.group()..prefix(char('~').trim(), (op, a) => -a);
-  builder.group()..right(char('^').trim(), (a, op, b) => math.pow(a, b));
-
-  builder.group()
-    ..left(char('*').trim(), (a, op, b) => a * b);
-
-  builder.group()
-    ..left(char('/').trim(), (a, op, b) => a / b)
-    ..left(char('%').trim(), (a, op, b) => a % b);
-  builder.group()
-  ..left(char('+').trim(), (a, op, b) => a + b)
-  ..left(char('-').trim(), (a, op, b) => a - b);
-
-  builder.group()
-    ..left(char(kCosSign).trim(), (a, op, b) => a * math.cos(b));
-  return builder;
-}
-
-buildExpressionComplex(){
-  final builder = ExpressionBuilder();
-  builder.group()
-  ..primitive(digit()
-      .plus()
-      .seq(char('.').seq(digit().plus()).optional())
-      .flatten()
-      .trim()
-      .map((a) => num.tryParse(a)))
-  ..wrapper(char('(').trim(), char(')').trim(), (l, a, r) => a);
-
-  builder.group()
-      ..prefix(char(kSquareRootSign).trim(), (l, op) => math.sqrt(op));
-    builder.group()
-      ..left(char(kSquareRootSign).trim(), (a, op, b) => a*math.sqrt(b));
-    builder.group()
-      ..left(string(kSinSign).trim(), (a, op, b) => a*(math.sin(b)));
-    builder.group()
-      ..prefix(string(kSinSign).trim(), (op, l) => math.sin(l));
-    builder.group()
-      ..left(string(kCosSign).trim(), (a, op, b) => a*(math.cos(b)));
-    builder.group()
-      ..prefix(string(kCosSign).trim(), (op, l) => math.cos(l));
-    builder.group()
-      ..left(string(kTanSign).trim(), (a, op, b) => a*(math.tan(b)));
-    builder.group()
-      ..prefix(string(kTanSign).trim(), (op, l) => math.tan(l));
-    builder.group()
-      ..left(string(kLogSign).trim(), (a, op, b) => a*(math.log(b)/math.ln10))
-      ..prefix(string(kLogSign).trim(), (op, l) => math.log(l)/math.ln10);
-      
-  builder.group()
-    ..left(char('*').trim(), (a, op, b) => a * b);
-
-  builder.group()
-    ..left(char('/').trim(), (a, op, b) => a / b)
-    ..left(char('%').trim(), (a, op, b) => a % b);
-  builder.group()
-  ..left(char('+').trim(), (a, op, b) => a + b)
-  ..left(char('-').trim(), (a, op, b) => a - b);
-
-  return builder;
 }

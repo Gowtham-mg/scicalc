@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scicalc/model/matrix_calc.dart';
-
+import 'package:ml_linalg/linalg.dart';
 
 List matrix2 = List();
 List matrix1 = List();
@@ -63,6 +63,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
                   _formKey2.currentState.save();
                   print(matrixFieldObject1.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
                   print(matrixFieldObject2.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
+                  var newList = matrixFieldObject1.fieldsToList();
                 },
               ),
             ],
