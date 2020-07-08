@@ -44,7 +44,18 @@ const kOctalSign = '10^8';
 const kHexaDecimalSign = '10^16';
 const kDecimalSign = '10^10';
 const kotherCharacters = '';
+
+const kAppBarTitleConstant = 'SciCalc';
+
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
+
+const List<String> evalSpecialCharacters = [kEqualSign, kClearAllSign, kDelSign];
+
+const List<String> kDistanceCalc = ['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'];
+
+const List<String> kTemperatureCalc = ['°C', '°F', 'K', '°Ra', '°Re'];
+
+const List<String> kSpeedCalc = ['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'];
 
 const keyboardSimpleCalculator = [
   [kClearAllSign, kNegate, kModulusSign, kDivisionSign],

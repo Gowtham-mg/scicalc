@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'temperature_calc.dart';
 
 import 'distance_calc.dart';
 import '../calc_constants.dart';
@@ -35,6 +36,7 @@ class Modes extends StatelessWidget {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen(), color: kWhiteColor,)));
           },
         ),
+
         GridItem(
           icon: Icons.accessibility, 
           iconName: 'BMI',
@@ -42,22 +44,28 @@ class Modes extends StatelessWidget {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: BMIScreen(), color: Color(0xFFF4F6FD))));
           },
         ),
+
         GridItem(
           icon: Icons.av_timer, 
           iconName: 'Speed',
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: SpeedCalc(),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('speed_calc', 'cm', 'km'),) ));
           },
         ),
+
         GridItem(
           icon: Icons.cloud, 
           iconName: 'Temperature',
+          screen: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('temperature_calc', '°C', 'K'),) ));
+          },
         ),
+        
         GridItem(
           icon: Icons.directions_bike, 
           iconName: 'Distance',
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc())));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('distance_calc', 'cm', 'km'))));
           },
         )
       ],

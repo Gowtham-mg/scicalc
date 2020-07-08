@@ -1,8 +1,17 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-import 'package:scicalc/helper/length_convert.dart';
+import '../calc_constants.dart';
+import '../helper/length_convert.dart';
+import '../helper/speed_convert.dart';
+import '../helper/temperature_convert.dart';
 
 class DistanceCalc extends StatefulWidget {
+  final String calcMode;
+  final String input1ModeInitialValue;
+  final String input2ModeInitialValue;
+  DistanceCalc(this.calcMode, this.input1ModeInitialValue, this.input2ModeInitialValue);
   @override
   _DistanceCalcState createState() => _DistanceCalcState();
 }
@@ -15,9 +24,11 @@ class _DistanceCalcState extends State<DistanceCalc> {
 
   final Widget sizedBox = SizedBox(width: 10,);
 
-  String input1Mode = 'cm';
+  List<String> calcDropDownButtons = [];
 
-  String input2Mode = 'km';
+  String input1Mode = '';
+  
+  String input2Mode = '';
 
   String input1 = '0';
 
@@ -26,7 +37,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
   bool isInput1Changed = false;
 
   bool isInput1ModeChanged = false;
-  
+
   void convertDistance(){
     print('');
     print('value1: $input1');
@@ -34,6 +45,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
     print('isInput1Changed: $isInput1Changed');
     var len1; 
     var len2;
+    
     if(isInput1Changed){
       len1 = int.tryParse(input1) ?? double.tryParse(input1) ?? 'invalid input';
       if(len1 == 'invalid input') return;
@@ -41,9 +53,19 @@ class _DistanceCalcState extends State<DistanceCalc> {
       len2 = int.tryParse(input2) ?? double.tryParse(input2) ?? 'invalid input';
       if(len2 == 'invalid input') return;
     }
-    num parsedValue = isInput1Changed ? len1 : len2;
-    num calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
     
+    num parsedValue = isInput1Changed ? len1 : len2;
+    num calculatedValue;
+
+    switch(widget.calcMode){
+      case 'distance_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+        break;
+      case 'speed_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+        break;
+      case 'temperature_calc': print('$calculatedValue $isInput1ModeChanged $isInput1Changed');calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedTemperature(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+        break;
+    }
+        
     if(isInput1Changed){
       input2controller.text = calculatedValue.toString();
     }else{
@@ -55,22 +77,34 @@ class _DistanceCalcState extends State<DistanceCalc> {
   }
 
   @override
+  void initState() {
+    print(widget.calcMode);
+    switch(widget.calcMode){
+      case 'distance_calc': calcDropDownButtons = kDistanceCalc; break;
+      case 'speed_calc': calcDropDownButtons = kSpeedCalc; break;
+      case 'temperature_calc': calcDropDownButtons = kTemperatureCalc; break;
+    }
+    input1Mode = widget.input1ModeInitialValue;
+    input2Mode = widget.input2ModeInitialValue;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
+    return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             sizedBox,
             Expanded(
               child: Column(
                 children: [
+                  SizedBox(height: MediaQuery.of(context).size.height*0.3,),
                   DropdownButton<String>(
-                      items: <String>['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'].map((String value) {
-                        return new DropdownMenuItem<String>(
+                      items: calcDropDownButtons.map((String value) {
+                        return DropdownMenuItem<String>(
                           value: value,
-                          child: new Text(value),
+                          child: Text(value),
                         );
                       }).toList(),
                       value: input1Mode,
@@ -101,6 +135,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                           setState(() {
                             print('value1: $value');
                             isInput1Changed = true;
+                            isInput1ModeChanged = true;
                             input1 = value;
                             print('isInput1Changed: $isInput1Changed');
                             convertDistance();
@@ -114,8 +149,9 @@ class _DistanceCalcState extends State<DistanceCalc> {
             Expanded(
               child: Column(
                 children: [
+                  SizedBox(height: MediaQuery.of(context).size.height*0.3,),
                   DropdownButton<String>(
-                      items: <String>['nm', 'µm', 'mm', 'cm', 'in', 'm', 'km', 'mile', 'nmi', 'ft', 'yd'].map((String value) {
+                      items: calcDropDownButtons.map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -149,6 +185,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                       setState(() {
                         print('value2: $value');
                         isInput1Changed = false;
+                        isInput1ModeChanged = false;
                         input2 = value;
                         print('isInput1Changed: $isInput1Changed');
                         convertDistance();
@@ -160,19 +197,6 @@ class _DistanceCalcState extends State<DistanceCalc> {
             ),
             SizedBox(width: 10,)
           ],
-        ),
-        SizedBox(height: 10,),
-        RaisedButton(
-          child: Text('Calculate'),
-          onPressed: (){
-            print('Calculate result');
-          },
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text('Result', style: TextStyle(letterSpacing: 2, fontSize: 20, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic),)
-      ],
-    );
+        );
   }
 }

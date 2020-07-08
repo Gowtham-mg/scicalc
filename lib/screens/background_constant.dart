@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scicalc/calc_constants.dart';
 
 import 'modes_of_calc.dart';
 
@@ -14,7 +15,7 @@ class BackGround extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.redAccent.shade200,
-        title: Text('SciCalc'),
+        title: Text(kAppBarTitleConstant),
         centerTitle: true,
         actions: [
           IconButton(

@@ -5,7 +5,6 @@ import '../helper/calc_helper.dart';
 import '../screens/modes_of_calc.dart';
 
 
-List l = [kEqualSign, kClearAllSign, kDelSign];
 class KeyboardButton extends StatelessWidget {
   final String button;
   KeyboardButton({this.button});
@@ -28,7 +27,7 @@ class KeyboardButton extends StatelessWidget {
           ),
           onPressed: () {
             var exp = inputExpression.read(context).state;
-            if(l.contains(button) || button == '+/-'){
+            if(evalSpecialCharacters.contains(button) || button == '+/-'){
               evaluate(context, exp, button);
             }else if(arithmetic.contains(button)){
               exp += ' '+ button +' ';
