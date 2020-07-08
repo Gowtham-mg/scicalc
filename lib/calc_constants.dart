@@ -9,16 +9,16 @@ const kPowerSign = 'X^';
 const kSquareRootSign = '√';
 const kLogSign = 'lg';
 const kLonSign = 'ln';
-const kLon2Sign = 'ln2';
+const kCotSign = 'cot';
 const kModulusSign = '%';
-const kSineSign = 'sin';
+const kSinSign = 'sin';
 const kCosSign = 'cos';
 const kTanSign = 'tan';
 const kRadSign = 'rad';
 const kDegSign = 'deg';
-const kArcSineSign = 'asin';
-const kArcCosSign = 'acos';
-const kArcTanSign = 'atan';
+const kSinInverseSign = 'sin-1';
+const kCosInverseSign = 'cos-1';
+const kTanInverseSign = 'tan-1';
 const kLeftParanthesis = '(';
 const kRightParanthesis = ')';
 const kEqualSign = '=';
@@ -44,12 +44,18 @@ const kOctalSign = '10^8';
 const kHexaDecimalSign = '10^16';
 const kDecimalSign = '10^10';
 const kotherCharacters = '';
+const kSinh = 'sinh'; 
+const kCosh = 'cosh'; 
+const kTahh = 'tanh'; 
+const kSinhInverse = 'sinh−1'; 
+const kCoshInverse = 'cosh-1';
+const kTanhInverse = 'tanh-1';
 
 const kAppBarTitleConstant = 'SciCalc';
 
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
 
-const complex = [kSineSign, kCosSign, kTanSign, kLogSign];
+const complex = [kSinSign, kCosSign, kTanSign, kLogSign, kSinInverseSign, kCosInverseSign, kTanInverseSign];
 
 const List<String> evalSpecialCharacters = [kEqualSign, kClearAllSign, kDelSign];
 
@@ -68,12 +74,13 @@ const keyboardSimpleCalculator = [
 ];
 
 const keyboardScientificCalculator = [
-  [kLeftParanthesis, kRightParanthesis, kSineSign, kCosSign, kTanSign,kLogSign],
-  [kDivisionSign, kClearAllSign, kDelSign, kModulusSign, kLonSign, kLon2Sign],
+  [kLeftParanthesis, kRightParanthesis, kSinSign, kCosSign, kTanSign,kLogSign],
+  [kDivisionSign, kClearAllSign, kDelSign, kModulusSign, kLonSign, kCotSign],
   [kMultiplicationSign, kSeven, kEight, kNine, kPowerSign, kDegSign],
-  [kMinusSign, kFour, kFive, kSix, kSquareRootSign, kArcSineSign],
-  [kPlusSign, kOne, kTwo, kThree, kPiSign, kArcCosSign],
-  [kEqualSign, kESign, kZero, kDecimalPointSign, kNegate, kArcTanSign]
+  [kMinusSign, kFour, kFive, kSix, kSquareRootSign, kSinInverseSign],
+  [kPlusSign, kOne, kTwo, kThree, kPiSign, kCosInverseSign],
+  [kEqualSign, kESign, kZero, kDecimalPointSign, kNegate, kTanInverseSign],
+  [kSinh, kCosh, kTahh, kSinhInverse, kCoshInverse,kTanhInverse],
 ];
 
 const kbottomContainerHeight = 80.0;

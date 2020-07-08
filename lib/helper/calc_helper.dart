@@ -4,7 +4,6 @@ import '../screens/modes_of_calc.dart';
 import 'package:petitparser/petitparser.dart';
 import 'dart:math' as math;
 import 'package:function_tree/function_tree.dart';
-import 'package:expressions/expressions.dart';
 
 String result = '';
 final inputExpression = StateProvider((ref) => '');
@@ -15,9 +14,7 @@ var parser;
 void evaluate(context, exp, operand){
 
   print('operand $operand');
-  // print(result);
-  
-  // tempExpression = inputExpression.read(context).state;
+
   tempExpression = exp;
   switch(operand){
     case kClearAllSign: _clear();
@@ -26,7 +23,6 @@ void evaluate(context, exp, operand){
     break;
     case kEqualSign: keyboardType.read(context).state ? _calculateScientificCalculator() : 
     _calculateSimpleResult();
-      // splitExpressions(tempExpression, context);    
     break;
     case '+/-': _negateResult();
   }
@@ -63,14 +59,7 @@ void _calculateScientificCalculator(){
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
-  
-  // tempExpression = tempExpression.replaceAll(kESign, 'e^1');
-  // tempExpression = tempExpression.replaceAll(kPowerSign, '^');
-  // tempExpression = tempExpression.replaceAll(kArcSineSign, 'arcsin');
-  // tempExpression = tempExpression.replaceAll(kArcCosSign, 'arccos');
-  // tempExpression = tempExpression.replaceAll(kArcTanSign, 'arctan');
-  tempExpression = tempExpression.replaceAll(kLogSign, 'log');
-  // _tryComputeResult();
+
   _tryComputeResult();
 }
 
@@ -79,7 +68,6 @@ void _tryComputeResult(){
     var temp = parser.parse(tempExpression).toString().split(' ');
     print('hello');
     result = temp.last;
-    // buildExpression();
     result = tempExpression.interpret().toString();
     print('$result result');
     if (result == 'NaN') result = 'Error';
@@ -138,9 +126,9 @@ buildExpressionComplex(){
     builder.group()
       ..left(char(kSquareRootSign).trim(), (a, op, b) => a*math.sqrt(b));
     builder.group()
-      ..left(string(kSineSign).trim(), (a, op, b) => a*(math.sin(b)));
+      ..left(string(kSinSign).trim(), (a, op, b) => a*(math.sin(b)));
     builder.group()
-      ..prefix(string(kSineSign).trim(), (op, l) => math.sin(l));
+      ..prefix(string(kSinSign).trim(), (op, l) => math.sin(l));
     builder.group()
       ..left(string(kCosSign).trim(), (a, op, b) => a*(math.cos(b)));
     builder.group()
@@ -150,8 +138,9 @@ buildExpressionComplex(){
     builder.group()
       ..prefix(string(kTanSign).trim(), (op, l) => math.tan(l));
     builder.group()
-      ..prefix(string('log').trim(), (op, l) => math.log(l));
-
+      ..left(string(kLogSign).trim(), (a, op, b) => a*(math.log(b)/math.ln10))
+      ..prefix(string(kLogSign).trim(), (op, l) => math.log(l)/math.ln10);
+      
   builder.group()
     ..left(char('*').trim(), (a, op, b) => a * b);
 
@@ -164,15 +153,3 @@ buildExpressionComplex(){
 
   return builder;
 }
-
-// buildExpression(){
-//   Expression expression = Expression.parse('cos(x)*cos(x)+sin(x)*sin(x)');
-//   var context = {
-//   'x': math.pi / 5,
-//   "π": math.pi,
-//   "cos": math.cos,
-//   "sin": math.sin
-// };
-//   final evaluator = const ExpressionEvaluator();
-//   result = evaluator.eval(expression, context).toString();
-// }
