@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ml_linalg/linalg.dart';
 import '../calc_constants.dart';
 
@@ -15,7 +14,34 @@ class MatrixForm{
     return subMatrix;
   }
 
-  calculate(String mode, input1, input2, int m, int n){
+  calculateTransform(String mode, input1, int m, int n){
+    var modifiedInput1;
+    switch(mode){
+      case kMatrixTranspose: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.transpose();
+                            break;
+      case kReduceRowWise: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.reduceRows((combine, row) => combine + row);
+                            break;
+      case kReduceColumnWise: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.reduceColumns((combine, vector) => combine + vector);
+                            break;      
+      case kMatrixSumElements: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.sum();
+                            break;
+      case kMatrixProductElements: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.product();
+                            break;
+      case kMatrixMaxValue: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.max();
+                            break;
+      case kMatrixMinValue: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            return modifiedInput1.min();
+                            break;
+    }
+  }
+
+  calculateOperations(String mode, input1, input2, int m, int n){
     var modifiedInput1;
     var modifiedInput2;
     switch(mode){
@@ -56,15 +82,3 @@ class MatrixForm{
     }
   }
 }
-
-      // case kReduceColumnWise: '';break; 
-
-      // case kReduceRowWise: '';break; 
-
-      // case kMatrixSumElements: '';break;
-
-      // case kMatrixProductElements: '';break;
-
-      // case kMatrixMaxValue: '';break;
-
-      // case kMatrixMinValue: '';break;

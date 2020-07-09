@@ -29,9 +29,17 @@ class Modes extends StatelessWidget {
 
         GridItem(
           icon: Icons.grid_on, 
-          iconName: 'Matrix', 
+          iconName: 'Matrix Operations', 
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen(), color: kWhiteColor,)));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen('operations'), color: kWhiteColor,)));
+          },
+        ),
+
+        GridItem(
+          icon: Icons.grid_on, 
+          iconName: 'Matrix Transformations', 
+          screen: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen('transformation'), color: kWhiteColor,)));
           },
         ),
 

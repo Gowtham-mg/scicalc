@@ -93,14 +93,21 @@ const kMatrixMultiplication = 'Multiply two Matrix';
 const kMatrixMultiplyScalar = 'Multiply Matrix & Scalar';
 const kElementWiseMultiplication = 'Element-wise Matrix Product';
 const kElementWiseSubtraction = 'Element-wise Matrix Subtraction';
-// const kMatrixTransposition = 'Matrix Transposition';
-// const kReduceRowWise = 'Matrix row-wise reduce';
-// const kReduceColumnWise = 'Matrix column-wise reduce';
-// const kMatrixSumElements = 'Sum of matrix elements';
-// const kMatrixProductElements = 'Product of matrix elements';
-// const kMatrixMaxValue = 'Max value of Matrix';
-// const kMatrixMinValue = 'Min value of Matrix';
-const kMatrixOperations = [
+
+const kMatrixTranspose = 'Matrix Transposition';
+const kReduceRowWise = 'Matrix row-wise reduce';
+const kReduceColumnWise = 'Matrix column-wise reduce';
+const kMatrixSumElements = 'Sum of matrix elements';
+const kMatrixProductElements = 'Product of matrix elements';
+const kMatrixMaxValue = 'Max value of Matrix';
+const kMatrixMinValue = 'Min value of Matrix';
+
+const kSingleMatrixOperations = [
+  kMatrixTranspose, kReduceRowWise, kReduceColumnWise, kMatrixSumElements, kMatrixProductElements,
+  kMatrixMaxValue, kMatrixMinValue
+];
+
+const kTwoMatrixOperations = [
   kMatrixAddition, kMatrixAddScalar, kMatrixMultiplyVector, kMatrixMultiplication, kMatrixMultiplyScalar, kElementWiseMultiplication,
   kElementWiseSubtraction
 ];
