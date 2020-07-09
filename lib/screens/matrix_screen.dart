@@ -63,7 +63,13 @@ class _MatrixScreenState extends State<MatrixScreen> {
                   _formKey2.currentState.save();
                   print(matrixFieldObject1.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
                   print(matrixFieldObject2.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
-                  var newList = matrixFieldObject1.fieldsToList();
+                  var newList1 = matrixFieldObject1.fieldsToList();
+                  var newList2 = matrixFieldObject2.fieldsToList();
+                  print(newList1);
+                  print(newList2);
+                  final matrix1 = Matrix.fromFlattenedList(newList1, 4, 4);
+                  final matrix2 = Matrix.fromFlattenedList(newList2, 4, 4);
+                  print(matrix1 + matrix2);
                 },
               ),
             ],
