@@ -1,32 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:ml_linalg/linalg.dart';
+import '../calc_constants.dart';
 
 class MatrixForm{
-  List fieldsToList(){
-    var input;
+  
+  List fieldToList(String text){
+    List<String> input = text.split(',');
     List<double> subMatrix = [];
-    matrixfields.forEach((key, value) {
-      input = double.tryParse(value[1].text);
-      input != null ? subMatrix.add(input) : subMatrix.add(0);
+    var temp;
+    input.forEach((element) { 
+      temp = double.tryParse(element);
+      temp != null ? subMatrix.add(temp) : subMatrix.add(0);
     });
     return subMatrix;
   }
 
-  Map matrixfields ={
-    0: ['m1n1',TextEditingController()],
-    1: ['m1n2',TextEditingController()],
-    2: ['m1n3',TextEditingController()],
-    3: ['m1n4',TextEditingController()],
-    4: ['m2n1',TextEditingController()],
-    5: ['m2n2',TextEditingController()],
-    6: ['m2n3',TextEditingController()],
-    7: ['m2n4',TextEditingController()],
-    8: ['m3n1',TextEditingController()],
-    9: ['m3n2',TextEditingController()],
-    10: ['m3n3',TextEditingController()],
-    11: ['m3n4',TextEditingController()],
-    12: ['m4n1',TextEditingController()],
-    13: ['m4n2',TextEditingController()],
-    14: ['m4n3',TextEditingController()],
-    15: ['m4n4',TextEditingController()]
-  };
+  calculate(String mode, input1, input2, int m, int n){
+    var modifiedInput1;
+    var modifiedInput2;
+    switch(mode){
+      case kMatrixAddition: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
+                            return modifiedInput1 + modifiedInput2;
+                            break;
+
+      case kMatrixAddScalar: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = double.parse(input2);
+                            return modifiedInput1 + modifiedInput2;
+                            break;
+
+      case kMatrixMultiplyVector: modifiedInput1 = Matrix.fromList(input1);
+                            modifiedInput2 = double.parse(input2);
+                            return modifiedInput1 * modifiedInput2;
+                            break;
+
+      case kMatrixMultiplication: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
+                            return modifiedInput1 * modifiedInput2;
+                            break;
+
+      case kMatrixMultiplyScalar: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = double.parse(input2);
+                            return modifiedInput1 * modifiedInput2;
+                            break; 
+      
+      case kElementWiseMultiplication: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
+                            return modifiedInput1.multiply(modifiedInput2);
+                            break;
+
+      case kElementWiseSubtraction: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
+                            modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
+                            return modifiedInput1 - modifiedInput2;
+                            break; 
+
+    }
+  }
+
 }
+
+      // case kReduceColumnWise: '';break; 
+
+      // case kReduceRowWise: '';break; 
+
+      // case kMatrixSumElements: '';break;
+
+      // case kMatrixProductElements: '';break;
+
+      // case kMatrixMaxValue: '';break;
+
+      // case kMatrixMinValue: '';break;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scicalc/calc_constants.dart';
 import 'package:scicalc/model/matrix_calc.dart';
 import 'package:ml_linalg/linalg.dart';
 
@@ -15,70 +16,115 @@ class _MatrixScreenState extends State<MatrixScreen> {
   
   final _formKey1 = GlobalKey<FormState>(debugLabel: 'Matrix1');
   
-  final _formKey2 = GlobalKey<FormState>(debugLabel: 'Matrix2');
+  final matrixFormObject = MatrixForm();
+  
+  final matrix1Controller =  TextEditingController();
+  
+  final matrix2Controller =  TextEditingController();
 
-  final matrixFieldObject1 = MatrixForm();
-
-  final matrixFieldObject2 = MatrixForm();
-
+  String inputMode = kMatrixAddition;
+  
   bool matrixChosen = true;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: Column(
+    return Column(
+        children: [
+          Spacer(flex: 10,),
+          DropdownButton<String>(
+            items: kMatrixOperations.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            value: inputMode,
+            onChanged: (val) {
+              setState(() {
+                inputMode = val;
+              });
+            },
+          ),
+          Spacer(flex: 1,),
+          Row(
             children: [
-              Text('Limit: Up to 4*4 Matrix', style: TextStyle(
-                fontSize: 20
-              ),),
-              Chip(
-                label: Text('Matrix1'),
-              ),
-              Flexible(
-                child: Form(
-                  key: _formKey1,
-                  child: ListView(
-                    children: 
-                      matrixFieldObject1.matrixfields.map((key, value) => MapEntry(key,matrixTextField(key, value[0], value[1]))).values.toList(),
-                  ),
-                ),
-              ),
-              Chip(
-                label: Text('Matrix2'),
-              ),
-              Expanded(
-                child: Form(
-                  key: _formKey2,
-                  child: ListView(
-                    children: 
-                      matrixFieldObject2.matrixfields.map((key, value) => MapEntry(key,matrixTextField(key, value[0], value[1]))).values.toList(),
-                  ),
-                ),
-              ),
-              RaisedButton(
-                child: Text('Result'),
-                onPressed: (){
-                  _formKey1.currentState.save();
-                  _formKey2.currentState.save();
-                  print(matrixFieldObject1.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
-                  print(matrixFieldObject2.matrixfields.map((key, value) => MapEntry(key,[value[0],value[1].text])).values.toList());
-                  var newList1 = matrixFieldObject1.fieldsToList();
-                  var newList2 = matrixFieldObject2.fieldsToList();
-                  print(newList1);
-                  print(newList2);
-                  final matrix1 = Matrix.fromFlattenedList(newList1, 4, 4);
-                  final matrix2 = Matrix.fromFlattenedList(newList2, 4, 4);
-                  print(matrix1 + matrix2);
-                },
-              ),
+              Spacer(flex: 1,),
+              buildChip('Matrix1'),
+              Spacer(flex: 2,),
+              buildChip('Matrix2'),
+              Spacer(flex: 1,),
             ],
           ),
+          Spacer(flex: 1,),
+          Form(
+            key: _formKey1,
+            child: Row(
+              children: [
+                SizedBox(width: 10,),
+                Expanded(child: TextFormFieldMatrix(matrixController: matrix1Controller)),
+                SizedBox(width: 10,),
+                Expanded(child: TextFormFieldMatrix(matrixController: matrix2Controller)),
+                SizedBox(width: 10,),
+              ]
+            ),
+          ),
+          Spacer(flex: 1,),
+          RaisedButton(
+            child: Text('Result'),
+            onPressed: (){
+              _formKey1.currentState.save();
+              
+              var newList1 = matrixFormObject.fieldToList(matrix1Controller.text);
+
+              var newList2 = matrixFormObject.fieldToList(matrix2Controller.text);
+              print(newList1);
+              print(newList2);
+              print(matrixFormObject.calculate(inputMode, newList1, newList2, 4, 4));
+            },
+          ),
+          Spacer(flex: 10,),
+        ],
+      );
+  }
+
+}
+
+class TextFormFieldMatrix extends StatelessWidget {
+  const TextFormFieldMatrix({
+    Key key,
+    @required this.matrixController,
+  }) : super(key: key);
+
+  final TextEditingController matrixController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: matrixController,
+      keyboardType: TextInputType.number,
+      cursorRadius: Radius.circular(2),
+      cursorWidth: 2,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderSide: BorderSide(
+            color: Colors.black,
+            style: BorderStyle.solid,
+            width: 2
+          ),
+        )
       ),
+      onChanged: (value){
+        print('value1: $value');
+      }  
     );
   }
 }
 
+Chip buildChip(String text) {
+  return Chip(
+    label: Text(text),
+  );
+}
 
 Widget matrixTextField (_index, String _text, TextEditingController _controller){
   print(_index);

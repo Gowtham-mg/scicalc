@@ -83,6 +83,35 @@ const keyboardScientificCalculator = [
   [kSinh, kCosh, kTahh, kSinhInverse, kCoshInverse,kTanhInverse],
 ];
 
+const kMatrixAddition = 'Add Two Matrix';
+const kMatrixAddScalar = 'Add Matrix & Scalar';
+// const kMatrixAddVector = 'Add Matrix & Vector';
+const kMatrixMultiplyVector = 'Multiply Matrix & vector';
+// const kCreateDiagonalMatrix = 'Create Diagonal Matrix';
+// const kCreateScalarMatrix = 'Create Scalar Matrix';
+const kMatrixMultiplication = 'Multiply two Matrix';
+const kMatrixMultiplyScalar = 'Multiply Matrix & Scalar';
+const kElementWiseMultiplication = 'Element-wise Matrix Product';
+const kElementWiseSubtraction = 'Element-wise Matrix Subtraction';
+// const kMatrixTransposition = 'Matrix Transposition';
+// const kReduceRowWise = 'Matrix row-wise reduce';
+// const kReduceColumnWise = 'Matrix column-wise reduce';
+// const kMatrixSumElements = 'Sum of matrix elements';
+// const kMatrixProductElements = 'Product of matrix elements';
+// const kMatrixMaxValue = 'Max value of Matrix';
+// const kMatrixMinValue = 'Min value of Matrix';
+const kMatrixOperations = [
+  kMatrixAddition, kMatrixAddScalar, kMatrixMultiplyVector, kMatrixMultiplication, kMatrixMultiplyScalar, kElementWiseMultiplication,
+  kElementWiseSubtraction
+];
+// const kColumnWiseMapping = 'Matrix row-wise mapping';
+// const kRowWiseMapping = 'Matrix column-wise mapping';
+// const kElemntWiseMapping = 'Matrix element-wise mapping';
+// 'Matrix element-wise power';
+// 'Matrix element-wise exp';
+
+
+
 const kbottomContainerHeight = 80.0;
 const kWhiteColor = Colors.white;
 
