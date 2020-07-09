@@ -104,6 +104,9 @@ const kMatrixOperations = [
   kMatrixAddition, kMatrixAddScalar, kMatrixMultiplyVector, kMatrixMultiplication, kMatrixMultiplyScalar, kElementWiseMultiplication,
   kElementWiseSubtraction
 ];
+
+const kMatrixOperationDimensions = ['1*2','1*3','1*4','2*1','2*2','2*3','2*4','3*1','3*2','3*3','3*4','4*1','4*2','4*3','4*4'];
+
 // const kColumnWiseMapping = 'Matrix row-wise mapping';
 // const kRowWiseMapping = 'Matrix column-wise mapping';
 // const kElemntWiseMapping = 'Matrix element-wise mapping';

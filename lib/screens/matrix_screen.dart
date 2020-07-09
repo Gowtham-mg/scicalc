@@ -23,13 +23,17 @@ class _MatrixScreenState extends State<MatrixScreen> {
   final matrix2Controller =  TextEditingController();
 
   String inputMode = kMatrixAddition;
+
+  String matrixDimension = '4*4';
   
+  var result;
+
   bool matrixChosen = true;
   @override
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Spacer(flex: 10,),
+          Spacer(flex: 4,),
           DropdownButton<String>(
             items: kMatrixOperations.map((String value) {
               return DropdownMenuItem<String>(
@@ -41,6 +45,21 @@ class _MatrixScreenState extends State<MatrixScreen> {
             onChanged: (val) {
               setState(() {
                 inputMode = val;
+              });
+            },
+          ),
+          Spacer(flex: 1,),
+          DropdownButton<String>(
+            items: kMatrixOperationDimensions.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            value: matrixDimension,
+            onChanged: (val) {
+              setState(() {
+                matrixDimension = val;
               });
             },
           ),
@@ -76,11 +95,16 @@ class _MatrixScreenState extends State<MatrixScreen> {
               var newList1 = matrixFormObject.fieldToList(matrix1Controller.text);
 
               var newList2 = matrixFormObject.fieldToList(matrix2Controller.text);
+
+              var dimension = matrixDimension.split('*');
               print(newList1);
               print(newList2);
-              print(matrixFormObject.calculate(inputMode, newList1, newList2, 4, 4));
+              setState(() {
+                result = matrixFormObject.calculate(inputMode, newList1, newList2, int.parse(dimension[0]), int.parse(dimension[1]));
+              });
             },
           ),
+          Text(result.toString()),
           Spacer(flex: 10,),
         ],
       );

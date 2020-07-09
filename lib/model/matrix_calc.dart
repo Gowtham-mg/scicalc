@@ -30,12 +30,12 @@ class MatrixForm{
                             break;
 
       case kMatrixMultiplyVector: modifiedInput1 = Matrix.fromList(input1);
-                            modifiedInput2 = double.parse(input2);
+                            modifiedInput2 = Vector.fromList(input2);
                             return modifiedInput1 * modifiedInput2;
                             break;
 
       case kMatrixMultiplication: modifiedInput1 = Matrix.fromFlattenedList(input1, m, n);
-                            modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
+                            modifiedInput2 = Matrix.fromFlattenedList(input2, n, m);
                             return modifiedInput1 * modifiedInput2;
                             break;
 
@@ -53,10 +53,8 @@ class MatrixForm{
                             modifiedInput2 = Matrix.fromFlattenedList(input2, m, n);
                             return modifiedInput1 - modifiedInput2;
                             break; 
-
     }
   }
-
 }
 
       // case kReduceColumnWise: '';break; 
