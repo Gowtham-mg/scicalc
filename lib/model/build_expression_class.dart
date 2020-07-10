@@ -17,8 +17,12 @@ class BuildExpressionClass{
     ..wrapper(char('(').trim(), char(')').trim(), (l, a, r) => a);
 
     builder.group()
-        ..prefix(char(kSquareRootSign).trim(), (l, op) => math.sqrt(op))
-        ..left(char(kSquareRootSign).trim(), (a, op, b) => a*math.sqrt(b));
+        ..prefix(string('pi').trim(), (l, op) => math.sqrt(op))
+        ..left(string('pi').trim(), (a, op, b) => a*math.sqrt(b));
+    
+    builder.group()
+        ..prefix(char(kPiSign).trim(), (l, op) => math.pi)
+        ..left(char(kPiSign).trim(), (a, op, b) => a*math.pi);
     
     builder.group()
         ..left(string(kSinSign).trim(), (a, op, b) => a*(math.sin(b)))
@@ -41,42 +45,31 @@ class BuildExpressionClass{
         ..prefix(string(kLonSign).trim(), (op, l) => math.log(l));
 
     builder.group()
-        ..left(string(kCotSign).trim(), (a, op, b) => a*(math.cos(b)/math.sin(b)))
-        ..prefix(string(kCotSign).trim(), (op, l) => (math.cos(l)/math.sin(l)));
-
-    builder.group()
-        ..left(string(knCr).trim(), (a, op, b) => factorial(a)/(factorial(a-b))*factorial(b))
-        ..left(string(knPr).trim(), (a, op, b) => factorial(a)/factorial(a-b));
+        ..left(char('C').trim(), (a, op, b) => factorial(a)/((factorial(a-b))*factorial(b)))
+        ..left(char('P').trim(), (a, op, b) => factorial(a)/factorial(a-b));
       
+    builder.group()
+        ..left(char('^').trim(), (a, op, b) => math.pow(a, b));
+    
+    builder.group()
+        ..left(string('^-1').trim(), (a, op, b) => math.pow(a, -b));
+
     builder.group()
         ..left(string(kExponentialSign).trim(), (a, op, b) => a*(math.exp(b)))
         ..prefix(string(kExponentialSign).trim(), (op, l) => math.exp(l));
-        
-    builder.group()
-        ..left(string(kSinh).trim(), (a, op, b) => a*((2 * math.exp(b) - math.exp(b))/2))
-        ..prefix(string(kSinh).trim(), (op, l) => (2 * math.exp(l) - math.exp(l))/2);
 
     builder.group()
-        ..left(string(kCosh).trim(), (a, op, b) => a*((2 * math.exp(b) + math.exp(b))/2))
-        ..prefix(string(kCosh).trim(), (op, l) => (2 * math.exp(l) + math.exp(l))/2);
+        ..prefix(string('factorial').trim(), (l,op) => 1);
+        
+    builder.group()
+        ..prefix(string(kSinh).trim(), (op, l) => ((math.exp(l)) - math.exp(-l))/2);
+
+    builder.group()
+        ..prefix(string(kCosh).trim(), (op, l) => (math.exp(l) + math.exp(-l))/2);
     
     builder.group()
-        ..left(string(kTanh).trim(), (a, op, b) => (a*((2 * math.exp(b) - math.exp(b))/2)/a*((2 * math.exp(b) + math.exp(b))/2)))
-        ..prefix(string(kTanh).trim(), (op, l) => ((2 * math.exp(l) - math.exp(l))/2)/((2 * math.exp(l) + math.exp(l))/2));
+        ..prefix(string(kTanh).trim(), (op, l) => (math.exp(l) - math.exp(-l))/(math.exp(l) + math.exp(-l)));
     
-    builder.group()
-        ..left(string(klon2Sign).trim(), (a, op, b) => a * (math.log(b) / math.ln2))
-        ..prefix(string(klon2Sign).trim(), (op, l) => math.log(l) / math.ln2);
-    
-        // builder.group()
-        // ..left(string(kSinInverseSign).trim(), (a, op, b) => a * (1/(math.sqrt(1-(b*b)))))
-        // ..prefix(string(kSinInverseSign).trim(), (op, l) => (1/(math.sqrt(1-(l*l)))));
-        // builder.group()
-        // ..left(string(kCosInverseSign).trim(), (a, op, b) => -a * (1/(math.sqrt(1-(b*b)))))
-        // ..prefix(string(kCosInverseSign).trim(), (op, l) => -1 * (1/(math.sqrt(1-(l*l)))));
-        // builder.group()
-        // ..left(string(kTanInverseSign).trim(), (a, op, b) => a*(math.exp(b)))
-        // ..prefix(string(kTanInverseSign).trim(), (op, l) => math.exp(l));
     builder.group()
       ..left(char('*').trim(), (a, op, b) => a * b);
 
@@ -86,7 +79,7 @@ class BuildExpressionClass{
     builder.group()
     ..left(char('+').trim(), (a, op, b) => a + b)
     ..left(char('-').trim(), (a, op, b) => a - b);
-
+    
     return builder;
   }
 }

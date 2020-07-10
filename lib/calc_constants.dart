@@ -9,26 +9,20 @@ const kPowerSign = 'X^';
 const kSquareRootSign = '√';
 const kLogSign = 'lg';
 const kLonSign = 'ln';
-const klon2Sign = 'ln2';
-const kCotSign = 'cot';
 const kModulusSign = '%';
 const kSinSign = 'sin';
 const kCosSign = 'cos';
 const kTanSign = 'tan';
 const kRadSign = 'rad';
 const kDegSign = 'deg';
-// const kSinInverseSign = 'sin-1';
-// const kCosInverseSign = 'cos-1';
-// const kTanInverseSign = 'tan-1';
 const kLeftParanthesis = '(';
 const kRightParanthesis = ')';
 const kEqualSign = '=';
 const kClearAllSign = 'AC';
 const kPiSign = 'π';
-const kExponentialSign = 'EXP';
+const kExponentialSign = 'e';
 const kDelSign = '⌫';
 const kCalcError = 'Error';
-const kChangeMode = '⌞⌝';
 const kOne = '1';
 const kTwo = '2';
 const kThree = '3';
@@ -51,15 +45,18 @@ const kTanh = 'tanh';
 const knCr = 'nCr';
 const knPr = 'nPr';
 const kFactorial = 'x!';
+const kInverse = 'x^-1';
+const kSqrtOfHalf = '√1/2';
 
 
 const kAppBarTitleConstant = 'SciCalc';
 
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];
 
-const complex = [kSinSign, kCosSign, kTanSign, kLogSign, 
+const complex = [
+  kSinSign, kCosSign, kTanSign, kLogSign, kPiSign, kLonSign, kExponentialSign,
+  kSinh, kCosh, kTanh
 ];
-// kSinInverseSign, kCosInverseSign, kTanInverseSign
 
 const List<String> evalSpecialCharacters = [kEqualSign, kClearAllSign, kDelSign];
 
@@ -84,7 +81,7 @@ const keyboardScientificCalculator = [
   [kMinusSign, kFour, kFive, kSix, kSquareRootSign],
   [kPlusSign, kOne, kTwo, kThree, kPiSign],
   [kEqualSign, kExponentialSign, kZero, kDecimalPointSign, kNegate, ],
-  [kLogSign, kCotSign, kDegSign, kFactorial, klon2Sign],
+  [kLogSign, kDegSign, kFactorial, kInverse, kSqrtOfHalf],
   [kSinh, kCosh, kTanh, knCr, knPr],
 ];
 

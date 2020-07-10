@@ -57,6 +57,7 @@ void _calculateScientificCalculator(){
   parser = expressionBuilder.build();
   print('tempExpression $tempExpression');
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
+  tempExpression = tempExpression.replaceAll('!', 'factorial');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
 
@@ -66,7 +67,6 @@ void _calculateScientificCalculator(){
 void _tryComputeResult(){
   try {
     var temp = parser.parse(tempExpression).toString().split(' ');
-    print('hello');
     result = temp.last;
     result = tempExpression.interpret().toString();
     print('$result result');

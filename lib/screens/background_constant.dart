@@ -17,18 +17,10 @@ class BackGround extends StatelessWidget {
         backgroundColor: Colors.redAccent.shade200,
         title: Text(kAppBarTitleConstant),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: (){
-              
-            },
-          )
-        ],
       ),
       body: PageView(
         onPageChanged: (index){
-          print(index);
+          print('pageviewindex $index');
         },
         children:[
           Container(

@@ -1,4 +1,4 @@
-num getCalculatedTemperature(input1Mode, input2Mode, parsedValue){
+String getCalculatedTemperature(input1Mode, input2Mode, parsedValue){
     print('$input1Mode $input2Mode $parsedValue');
     switch(input1Mode){
       case '°C': parsedValue = parsedValue + 273.15;break;
@@ -9,10 +9,10 @@ num getCalculatedTemperature(input1Mode, input2Mode, parsedValue){
     }
     switch(input2Mode){
       case '°C': parsedValue = parsedValue - 273.15;break;
-      case '°F': parsedValue = parsedValue * 9 / 5 + 32;break;
+      case '°F': parsedValue = (parsedValue - 273.15) * 9 / 5 + 32;break;
       case '°Ra': parsedValue = parsedValue * 1.8;break;
       case '°Re': parsedValue = parsedValue * 21 / 40 + 7.5;break;
       default: break;
     }
-    return parsedValue;
+    return parsedValue.toStringAsFixed(2);
 }

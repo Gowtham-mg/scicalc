@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../calc_constants.dart';
 import '../helper/calc_helper.dart';
 import '../screens/modes_of_calc.dart';
-
+import 'dart:math' as math;
 
 class KeyboardButton extends StatelessWidget {
   final String button;
@@ -26,11 +26,27 @@ class KeyboardButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
+            print('button $button');
             var exp = inputExpression.read(context).state;
             if(evalSpecialCharacters.contains(button) || button == '+/-'){
               evaluate(context, exp, button);
             }else if(arithmetic.contains(button) || complex.contains(button)){
               exp += ' '+ button +' ';
+              inputExpression.read(context).state = exp;
+            }else if(button == 'x!' || button == kInverse) {
+              exp += ' ' + button.substring(1) +' ';
+              inputExpression.read(context).state = exp;
+            }else if(button == knCr) {
+              exp += ' ' + 'C' +' ';
+              inputExpression.read(context).state = exp;
+            }else if(button == kSqrtOfHalf) {
+              exp += ' ' + math.sqrt1_2.toString() +' ';
+              inputExpression.read(context).state = exp;
+            }else if(button == knPr) {
+              exp += ' ' + 'P' +' ';
+              inputExpression.read(context).state = exp;
+            }else if(button == kPowerSign) {
+              exp += ' ' + '^' +' ';
               inputExpression.read(context).state = exp;
             }else{
               print(button);

@@ -1,5 +1,5 @@
 
-num getCalculatedLength(input1Mode, input2Mode, parsedValue){
+String getCalculatedLength(input1Mode, input2Mode, parsedValue){
     print('$input1Mode $input2Mode $parsedValue');
     switch(input1Mode){
       case 'mm': parsedValue = parsedValue/1000;break;
@@ -28,5 +28,5 @@ num getCalculatedLength(input1Mode, input2Mode, parsedValue){
       case 'nmi': parsedValue = parsedValue * 0.000539957;break;
       default: break;
     }
-    return parsedValue;
+    return parsedValue.toStringAsFixed(4);
 }

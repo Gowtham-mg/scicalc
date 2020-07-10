@@ -1,5 +1,5 @@
 
-num getCalculatedSpeed(input1Mode, input2Mode, parsedValue){
+String getCalculatedSpeed(input1Mode, input2Mode, parsedValue){
     print('$input1Mode $input2Mode $parsedValue');
     switch(input1Mode){
       case 'mph': parsedValue = parsedValue * 1.609;break;
@@ -15,5 +15,5 @@ num getCalculatedSpeed(input1Mode, input2Mode, parsedValue){
       case 'kt': parsedValue = parsedValue / 1.852;break;
       default: break;
     }
-    return parsedValue;
+    return parsedValue.toStringAsFixed(4);
 }

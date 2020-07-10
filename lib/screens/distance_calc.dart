@@ -60,24 +60,24 @@ class _DistanceCalcState extends State<DistanceCalc> {
     print('isInput1ModeChanged $isInput1ModeChanged');    
 
     num parsedValue = isInput1Changed || isInput1ModeChanged ? len1 : len2;
-    num calculatedValue;
+    String calculatedValue;
     print('parsedValue: $parsedValue');
     if(parsedValue == null){
       return null;
     }
     switch(widget.calcMode){
-      case 'distance_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
+      case 'distance_calc': calculatedValue = isInput1ModeChanged || isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
         break;
-      case 'speed_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedSpeed(input1Mode, input2Mode, parsedValue) : getCalculatedSpeed(input2Mode, input1Mode, parsedValue);
+      case 'speed_calc': calculatedValue = isInput1ModeChanged || isInput1Changed ? getCalculatedSpeed(input1Mode, input2Mode, parsedValue) : getCalculatedSpeed(input2Mode, input1Mode, parsedValue);
         break;
-      case 'temperature_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedTemperature(input1Mode, input2Mode, parsedValue) : getCalculatedTemperature(input2Mode, input1Mode, parsedValue);
+      case 'temperature_calc': calculatedValue = isInput1ModeChanged || isInput1Changed ? getCalculatedTemperature(input1Mode, input2Mode, parsedValue) : getCalculatedTemperature(input2Mode, input1Mode, parsedValue);
         break;
     }
         
     if(isInput1Changed){
-      input2controller.text = calculatedValue.toString();
+      input2controller.text = calculatedValue;
     }else{
-      input1controller.text = calculatedValue.toString();
+      input1controller.text = calculatedValue;
     }
     setState(() {
       
