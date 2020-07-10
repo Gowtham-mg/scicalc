@@ -73,11 +73,11 @@ class _BMIScreenState extends State<BMIScreen> {
                       children: <Widget>[
                         Text(
                           height.toString(),
-                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)),
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Colors.black),
                         ),
                         Text(
                           'cm',
-                          style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98))
+                          style: TextStyle(fontSize: deviceHeight*0.03, color: Colors.black)
                         )
                       ],
                     ),
@@ -119,7 +119,7 @@ class _BMIScreenState extends State<BMIScreen> {
                         ),
                         Text(
                           weight.toString(),
-                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)) ,
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Colors.black) ,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +157,7 @@ class _BMIScreenState extends State<BMIScreen> {
                         ),
                         Text(
                           age.toString(),
-                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)),
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Colors.black),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -41,6 +41,9 @@ const kFactorial = 'x!';
 const kInverse = 'x^-1';
 const kSqrtOfHalf = '√1/2';
 
+const kSpeedScreenName = 'Speed';
+const kTemperatureScreenName = 'Temperature';
+const kDistanceScreenName = 'Distance';
 const kAppBarTitleConstant = 'SciCalc';
 
 const arithmetic = [kPlusSign, kMinusSign, kMultiplicationSign, kDivisionSign, kModulusSign];

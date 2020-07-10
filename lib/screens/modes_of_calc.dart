@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scicalc/calc_constants.dart';
 
 import 'distance_calc.dart';
 import '../bmi_constants.dart';
@@ -53,25 +54,25 @@ class Modes extends StatelessWidget {
 
         GridItem(
           icon: Icons.av_timer, 
-          iconName: 'Speed',
+          iconName: kSpeedScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('speed_calc', 'mph', 'kph'),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'speed_calc', input1ModeInitialValue: 'mph', input2ModeInitialValue: 'kph'),) ));
           },
         ),
 
         GridItem(
           icon: Icons.cloud, 
-          iconName: 'Temperature',
+          iconName: kTemperatureScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('temperature_calc', '°C', 'K'),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'temperature_calc', input1ModeInitialValue: '°C', input2ModeInitialValue:'K'),) ));
           },
         ),
         
         GridItem(
           icon: Icons.directions_bike, 
-          iconName: 'Distance',
+          iconName: kDistanceScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc('distance_calc', 'cm', 'km'))));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'distance_calc', input1ModeInitialValue:'cm', input2ModeInitialValue:'km'))));
           },
         )
       ],
@@ -102,10 +103,7 @@ class GridItem extends StatelessWidget {
               size: 30,
             ),
             sizedBoxHeight,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(iconName, style: TextStyle(fontSize: 20),softWrap: true,),
-            )
+            Text(iconName, style: TextStyle(fontSize: 20),softWrap: true,),
           ],
         ),
     );

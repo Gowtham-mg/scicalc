@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-const kbottomContainerHeight = 80.0;
+const kbottomContainerHeight = 50.0;
 const kWhiteColor = Colors.white;
 
 const kLargeButtonTextStyle = TextStyle(

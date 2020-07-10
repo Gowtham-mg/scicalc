@@ -10,7 +10,7 @@ class DistanceCalc extends StatefulWidget {
   final String calcMode;
   final String input1ModeInitialValue;
   final String input2ModeInitialValue;
-  DistanceCalc(this.calcMode, this.input1ModeInitialValue, this.input2ModeInitialValue);
+  DistanceCalc({this.calcMode, this.input1ModeInitialValue, this.input2ModeInitialValue});
   @override
   _DistanceCalcState createState() => _DistanceCalcState();
 }
@@ -105,7 +105,9 @@ class _DistanceCalcState extends State<DistanceCalc> {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(height: deviceHeight*0.3,),
+                  sizedBoxHeight,
+                  Text(''),
+                  SizedBox(height: deviceHeight*0.28,),
                   DropdownButton<String>(
                       items: calcDropDownButtons.map((String value) {
                         return DropdownMenuItem<String>(
