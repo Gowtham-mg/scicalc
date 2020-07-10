@@ -15,7 +15,7 @@ class BackGround extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.redAccent.shade200,
-        title: Text(kAppBarTitleConstant),
+        title: const Text(kAppBarTitleConstant),
         centerTitle: true,
       ),
       body: PageView(
@@ -24,6 +24,7 @@ class BackGround extends StatelessWidget {
         },
         children:[
           Container(
+            padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
             child: child
           ),
           Container(child: Modes(),)

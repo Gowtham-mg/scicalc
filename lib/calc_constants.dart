@@ -22,7 +22,7 @@ const kClearAllSign = 'AC';
 const kPiSign = 'π';
 const kExponentialSign = 'e';
 const kDelSign = '⌫';
-const kCalcError = 'Error';
+// const kCalcError = 'Error';
 const kOne = '1';
 const kTwo = '2';
 const kThree = '3';
@@ -34,11 +34,10 @@ const kEight = '8';
 const kNine = '9';
 const kZero = '0';
 const kNegate = '+/-';
-const kBinSign = '10^2';
-const kOctalSign = '10^8';
-const kHexaDecimalSign = '10^16';
-const kDecimalSign = '10^10';
-const kotherCharacters = '';
+// const kBinSign = '10^2';
+// const kOctalSign = '10^8';
+// const kHexaDecimalSign = '10^16';
+// const kDecimalSign = '10^10';
 const kSinh = 'sinh'; 
 const kCosh = 'cosh'; 
 const kTanh = 'tanh';
@@ -48,6 +47,9 @@ const kFactorial = 'x!';
 const kInverse = 'x^-1';
 const kSqrtOfHalf = '√1/2';
 
+const Widget sizedBoxWidth = SizedBox(width: 10,);
+
+const Widget sizedBoxHeight = SizedBox(width: 10,);
 
 const kAppBarTitleConstant = 'SciCalc';
 
@@ -115,14 +117,6 @@ const kTwoMatrixOperations = [
 ];
 
 const kMatrixOperationDimensions = ['1*2','1*3','1*4','2*1','2*2','2*3','2*4','3*1','3*2','3*3','3*4','4*1','4*2','4*3','4*4'];
-
-// const kColumnWiseMapping = 'Matrix row-wise mapping';
-// const kRowWiseMapping = 'Matrix column-wise mapping';
-// const kElemntWiseMapping = 'Matrix element-wise mapping';
-// 'Matrix element-wise power';
-// 'Matrix element-wise exp';
-
-
 
 const kbottomContainerHeight = 80.0;
 const kWhiteColor = Colors.white;

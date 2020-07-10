@@ -19,9 +19,9 @@ class ResultsPage extends StatelessWidget{
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomCenter,
-              child:Text('Your Result',style: kTitleTextStyle,),
+              child: const Text('Your Result',style: kTitleTextStyle,),
             ),
           ),
           Expanded(
@@ -35,7 +35,13 @@ class ResultsPage extends StatelessWidget{
                   Text(resultText.toUpperCase(),style: kresultTextStyle,),
                   Text(bmiResult,style: kBmiTextStyle,),
                   Text(interpretation,style: kBodyTextStyle,textAlign: TextAlign.center,),
-                BottomButton(buttonTitle: 'RE-CALCULATE', onTap: (){Navigator.pop(context);}, colour: Colors.white70,)
+                  BottomButton(
+                    buttonTitle: 'RE-CALCULATE', 
+                    onTap: (){
+                      Navigator.pop(context);
+                    }, 
+                    colour: Colors.white70,
+                  )
                 ],
               ),
             ),

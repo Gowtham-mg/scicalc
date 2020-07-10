@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'calc_constants.dart';
 import 'screens/calc_home_page.dart';
 
 
@@ -13,7 +14,7 @@ class SciCalc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Calc App',
+      title: kAppBarTitleConstant,
       theme: ThemeData(
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -22,4 +23,3 @@ class SciCalc extends StatelessWidget {
     );
   }
 }
-

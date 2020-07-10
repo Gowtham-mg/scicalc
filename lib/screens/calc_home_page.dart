@@ -12,47 +12,42 @@ class CalcHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackGround(
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Consumer(
-              (context, read){
-              final exp = read(inputExpression).state.toString();
-              return SelectableText(
-                exp,
-                autofocus: true,
-                style: TextStyle(
-                  fontSize: 30,
-                  letterSpacing: 2
-                ),
-              );
-              } 
-            )),
-            Consumer((context, read){
-              final keyBoardType = read(keyboardType).state;
-              return Expanded(
+      child: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Consumer(
+            (context, read){
+            final exp = read(inputExpression).state.toString();
+            return SelectableText(
+              exp,
+              autofocus: true,
+              style: const TextStyle(
+                fontSize: 25,
+                letterSpacing: 2
+              ),
+            );
+            } 
+          )),
+          Consumer((context, read){
+            final keyBoardType = read(keyboardType).state;
+            return Expanded(
               flex: keyBoardType? 4 : 3,
               child: Container(
-                // height: MediaQuery.of(context).size.height*0.60,
                 child:keyBoardType? SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: buildKeyboardScientificCalculator(),
                   ),
                 ) : Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: buildKeyboardSimpleCalculator(),
-                  )
-                ),
-              );
-            }
-          )
-        ],)
-      ),
-      color: kWhiteColor
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: buildKeyboardSimpleCalculator(),
+                )
+              ),
+            );
+          }
+        )
+      ],),
     );
   }
 

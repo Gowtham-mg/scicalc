@@ -64,7 +64,7 @@ class _BMIScreenState extends State<BMIScreen> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('HEIGHT',style: klabelTextStyle,),
+                    const Text('HEIGHT',style: klabelTextStyle,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -74,7 +74,7 @@ class _BMIScreenState extends State<BMIScreen> {
                           height.toString(),
                           style: knumberTextStyle,
                         ),
-                        Text(
+                        const Text(
                           'cm',
                           style: klabelTextStyle,
                         )
@@ -93,8 +93,6 @@ class _BMIScreenState extends State<BMIScreen> {
                         value: height.toDouble(),
                         min: 100.0,
                         max: 300.0,
-                        //activeColor: Colors.white,
-//                        inactiveColor: Color(0xFF8D8E98),
                         onChanged: (double newValue){
                           setState(() {
                             height = newValue.round();
@@ -114,23 +112,25 @@ class _BMIScreenState extends State<BMIScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'WEIGHT',
                           style: klabelTextStyle,
                         ),
-                        Text(weight.toString(),
-                        style: knumberTextStyle ,),
+                        Text(
+                          weight.toString(),
+                          style: knumberTextStyle ,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(icon: FontAwesomeIcons.plus,
                               onPressed: (){
-                              setState(() {
-                                weight++;
-                              });
+                                setState(() {
+                                  weight++;
+                                });
                               },
                             ),
-                            SizedBox(width:10.0),
+                            sizedBoxWidth,
                             RoundIconButton(icon: FontAwesomeIcons.minus,
                             onPressed: (){
                               setState(() {
@@ -150,7 +150,7 @@ class _BMIScreenState extends State<BMIScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'AGE',
                           style: klabelTextStyle,
                         ),
@@ -169,7 +169,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                 });
                               },
                             ),
-                            SizedBox(width: 10.0,),
+                            sizedBoxWidth,
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
                               onPressed: (){
@@ -186,20 +186,21 @@ class _BMIScreenState extends State<BMIScreen> {
               ),
             ],
           )),
-          BottomButton(buttonTitle: 'CALCULATE',
-          onTap: (){
-            BmiCalc calc = BmiCalc(height: height, weight: weight);
-
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>
-            BackGround(
-              child: ResultsPage(
-                bmiResult: calc.calculationBMI(),
-                resultText: calc.getResult(),
-                interpretation: calc.getInterpretation(),
-              ),
-              color: kWhiteColor
-            )));
-          },)
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: (){
+              BmiCalc calc = BmiCalc(height: height, weight: weight);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              BackGround(
+                child: ResultsPage(
+                  bmiResult: calc.calculationBMI(),
+                  resultText: calc.getResult(),
+                  interpretation: calc.getInterpretation(),
+                ),
+                color: kWhiteColor
+              )));
+            },
+          )
         ],
     );
   }

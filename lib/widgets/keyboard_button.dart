@@ -12,15 +12,15 @@ class KeyboardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: MaterialButton(
-          shape: CircleBorder(),
-          color: Color(0xFFFFFFFF),
-          padding: EdgeInsets.symmetric(vertical: 10.0),
+          shape: const CircleBorder(),
+          color: const Color(0xFFFFFFFF),
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Container(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             alignment: Alignment.center,
             child: Text(
               button,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 23.0),
             ),

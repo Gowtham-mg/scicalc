@@ -58,6 +58,7 @@ void _calculateScientificCalculator(){
   print('tempExpression $tempExpression');
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
   tempExpression = tempExpression.replaceAll('!', 'fact');
+  tempExpression = tempExpression.replaceAll(kSquareRootSign, 'sqrt');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
   print('tempExpression $tempExpression');

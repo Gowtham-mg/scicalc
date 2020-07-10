@@ -96,12 +96,12 @@ class GridItem extends StatelessWidget {
         onPressed: screen,
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            sizedBoxHeight,
             Icon(
               icon,
               size: 30,
             ),
-            SizedBox(height: 10,),
+            sizedBoxHeight,
             Text(iconName, style: TextStyle(fontSize: 20),)
           ],
         ),

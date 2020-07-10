@@ -22,8 +22,6 @@ class _DistanceCalcState extends State<DistanceCalc> {
 
   var input2controller = TextEditingController(text: '');
 
-  final Widget sizedBox = SizedBox(width: 10,);
-
   List<String> calcDropDownButtons = [];
 
   String input1Mode = '';
@@ -103,7 +101,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            sizedBox,
+            sizedBoxWidth,
             Expanded(
               child: Column(
                 children: [
@@ -153,7 +151,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                 ]
               ),
             ),
-            sizedBox,
+            sizedBoxWidth,
             Expanded(
               child: Column(
                 children: [
@@ -203,7 +201,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
                 ],
               ),
             ),
-            SizedBox(width: 10,)
+            sizedBoxWidth
           ],
         );
   }

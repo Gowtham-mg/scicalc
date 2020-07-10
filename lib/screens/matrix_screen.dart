@@ -108,15 +108,15 @@ class _MatrixScreenState extends State<MatrixScreen> {
               key: _formKey1,
               child: Row(
                 children: [
-                  SizedBox(width: 10,),
+                  sizedBoxWidth,
                   Flexible(
                     fit: FlexFit.loose,
                     child: TextFormFieldMatrix(matrixController: matrix1Controller)),
-                  SizedBox(width: 10,),
+                  sizedBoxWidth,
                   Flexible(
                     fit: FlexFit.loose,
                     child: TextFormFieldMatrix(matrixController: matrix2Controller)),
-                  SizedBox(width: 10,),
+                  sizedBoxWidth,
                 ]
               ),
             ) : Form(
