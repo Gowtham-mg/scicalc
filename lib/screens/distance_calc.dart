@@ -62,6 +62,9 @@ class _DistanceCalcState extends State<DistanceCalc> {
     num parsedValue = isInput1Changed || isInput1ModeChanged ? len1 : len2;
     num calculatedValue;
     print('parsedValue: $parsedValue');
+    if(parsedValue == null){
+      return null;
+    }
     switch(widget.calcMode){
       case 'distance_calc': calculatedValue = isInput1ModeChanged && isInput1Changed ? getCalculatedLength(input1Mode, input2Mode, parsedValue) : getCalculatedLength(input2Mode, input1Mode, parsedValue);
         break;

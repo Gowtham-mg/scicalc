@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scicalc/model/build_expression_class.dart';
 import '../screens/modes_of_calc.dart';
 import 'package:petitparser/petitparser.dart';
-import 'dart:math' as math;
 import 'package:function_tree/function_tree.dart';
 
 String result = '';
@@ -80,4 +79,9 @@ void _tryComputeResult(){
   } catch (e) {
     print('error $e');
   }
+}
+
+int factorial(n){
+  if(n>1) return n * factorial(n-1);
+  else return 1;
 }
