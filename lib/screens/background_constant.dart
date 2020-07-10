@@ -24,7 +24,7 @@ class BackGround extends StatelessWidget {
         },
         children:[
           Container(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+            padding: EdgeInsets.fromLTRB(10, 15, 10, 10),
             child: child
           ),
           Container(child: Modes(),)

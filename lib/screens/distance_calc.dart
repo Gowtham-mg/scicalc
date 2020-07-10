@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
+import '../bmi_constants.dart';
 import '../calc_constants.dart';
 import '../helper/length_convert.dart';
 import '../helper/speed_convert.dart';

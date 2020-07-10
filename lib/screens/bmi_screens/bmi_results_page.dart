@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/bmi_widgets/bmi_bottom_button.dart';
-import '../../calc_constants.dart';
+import '../../bmi_constants.dart';
 import '../../widgets/bmi_widgets/bmi_reusable_cards.dart';
 
 
@@ -21,7 +21,7 @@ class ResultsPage extends StatelessWidget{
             child: Container(
               padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomCenter,
-              child: const Text('Your Result',style: kTitleTextStyle,),
+              child: Text('Your Result',style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))),
             ),
           ),
           Expanded(

@@ -1,9 +1,10 @@
-import 'package:scicalc/calc_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scicalc/model/build_expression_class.dart';
-import '../screens/modes_of_calc.dart';
 import 'package:petitparser/petitparser.dart';
 import 'package:function_tree/function_tree.dart';
+
+import '../calc_constants.dart';
+import '../model/build_expression_class.dart';
+import '../screens/modes_of_calc.dart';
 
 String result = '';
 final inputExpression = StateProvider((ref) => '');
@@ -41,7 +42,7 @@ void _negateResult(){
 }
 
 void _deleteValue(){
-  tempExpression = tempExpression.substring(0, tempExpression.length - 1);
+  tempExpression = tempExpression.substring(0, tempExpression.length - 3);
   if (tempExpression == '') tempExpression = '0';
 }
 
@@ -59,6 +60,7 @@ void _calculateScientificCalculator(){
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
   tempExpression = tempExpression.replaceAll('!', 'fact');
   tempExpression = tempExpression.replaceAll(kSquareRootSign, 'sqrt');
+  tempExpression = tempExpression.replaceAll('^3', 'cube');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
   print('tempExpression $tempExpression');

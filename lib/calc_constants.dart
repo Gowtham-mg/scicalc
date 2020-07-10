@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 const kPlusSign = '+';
 const kMinusSign = '-';
@@ -14,7 +13,7 @@ const kSinSign = 'sin';
 const kCosSign = 'cos';
 const kTanSign = 'tan';
 const kRadSign = 'rad';
-const kDegSign = 'deg';
+const kCubeSign = 'x^3';
 const kLeftParanthesis = '(';
 const kRightParanthesis = ')';
 const kEqualSign = '=';
@@ -22,7 +21,6 @@ const kClearAllSign = 'AC';
 const kPiSign = 'π';
 const kExponentialSign = 'e';
 const kDelSign = '⌫';
-// const kCalcError = 'Error';
 const kOne = '1';
 const kTwo = '2';
 const kThree = '3';
@@ -34,10 +32,6 @@ const kEight = '8';
 const kNine = '9';
 const kZero = '0';
 const kNegate = '+/-';
-// const kBinSign = '10^2';
-// const kOctalSign = '10^8';
-// const kHexaDecimalSign = '10^16';
-// const kDecimalSign = '10^10';
 const kSinh = 'sinh'; 
 const kCosh = 'cosh'; 
 const kTanh = 'tanh';
@@ -46,10 +40,6 @@ const knPr = 'nPr';
 const kFactorial = 'x!';
 const kInverse = 'x^-1';
 const kSqrtOfHalf = '√1/2';
-
-const Widget sizedBoxWidth = SizedBox(width: 10,);
-
-const Widget sizedBoxHeight = SizedBox(width: 10,);
 
 const kAppBarTitleConstant = 'SciCalc';
 
@@ -83,16 +73,13 @@ const keyboardScientificCalculator = [
   [kMinusSign, kFour, kFive, kSix, kSquareRootSign],
   [kPlusSign, kOne, kTwo, kThree, kPiSign],
   [kEqualSign, kExponentialSign, kZero, kDecimalPointSign, kNegate, ],
-  [kLogSign, kDegSign, kFactorial, kInverse, kSqrtOfHalf],
+  [kLogSign, kCubeSign, kFactorial, kInverse, kSqrtOfHalf],
   [kSinh, kCosh, kTanh, knCr, knPr],
 ];
 
 const kMatrixAddition = 'Add Two Matrix';
 const kMatrixAddScalar = 'Add Matrix & Scalar';
-// const kMatrixAddVector = 'Add Matrix & Vector';
 const kMatrixMultiplyVector = 'Multiply Matrix & vector';
-// const kCreateDiagonalMatrix = 'Create Diagonal Matrix';
-// const kCreateScalarMatrix = 'Create Scalar Matrix';
 const kMatrixMultiplication = 'Multiply two Matrix';
 const kMatrixMultiplyScalar = 'Multiply Matrix & Scalar';
 const kElementWiseMultiplication = 'Element-wise Matrix Product';
@@ -118,39 +105,3 @@ const kTwoMatrixOperations = [
 
 const kMatrixOperationDimensions = ['1*2','1*3','1*4','2*1','2*2','2*3','2*4','3*1','3*2','3*3','3*4','4*1','4*2','4*3','4*4'];
 
-const kbottomContainerHeight = 80.0;
-const kWhiteColor = Colors.white;
-
-const klabelTextStyle =  TextStyle(
-  fontSize: 18.0,color: Color(0xFF8D8E98),
-);
-
-const knumberTextStyle = TextStyle(
-    fontSize: 50.0,
-    fontWeight: FontWeight.w900
-);
-
-const kLargeButtonTextStyle = TextStyle(
-  fontSize: 25.0,
-  fontWeight: FontWeight.bold
-);
-
-const kTitleTextStyle = TextStyle(
-  fontSize: 50.0,
-  fontWeight: FontWeight.bold
-);
-
-const kresultTextStyle = TextStyle(
-  color: Color(0xFF24D876),
-  fontWeight: FontWeight.bold,
-  fontSize: 22.0
-);
-
-const kBmiTextStyle = TextStyle(
-  fontSize: 100,
-  fontWeight: FontWeight.bold
-);
-
-const kBodyTextStyle = TextStyle(
-  fontSize: 22.0,
-);

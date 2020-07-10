@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:scicalc/calc_constants.dart';
-import 'package:scicalc/model/matrix_calc.dart';
+import '../calc_constants.dart';
+import '../bmi_constants.dart';
+import '../model/matrix_calc.dart';
 
 List matrix2 = List();
 List matrix1 = List();
 List subMatrix = List();
 
+enum matrixModes{
+  operations,
+  transformation
+}
+
 class MatrixScreen extends StatefulWidget {
-  final String matrixMode;
+  final matrixModes matrixMode;
   MatrixScreen(this.matrixMode);
   @override
   _MatrixScreenState createState() => _MatrixScreenState();
@@ -31,18 +37,18 @@ class _MatrixScreenState extends State<MatrixScreen> {
 
   bool matrixChosen = true;
 
-  List<String> matrixModes = ['']; 
+  List<String> matrixModesList = ['']; 
   
   @override
   void initState() {
-    inputMode = widget.matrixMode == 'operations' ? kMatrixAddition : kMatrixTranspose ;
-    matrixModes = widget.matrixMode == 'operations' ? kTwoMatrixOperations : kSingleMatrixOperations ;
+    inputMode = widget.matrixMode == matrixModes.operations ? kMatrixAddition : kMatrixTranspose ;
+    matrixModesList = widget.matrixMode == matrixModes.operations ? kTwoMatrixOperations : kSingleMatrixOperations ;
     super.initState();
   }
 
   @override
   void dispose() { 
-    if(widget.matrixMode == 'operations'){
+    if(widget.matrixMode == matrixModes.operations){
       matrix1Controller.clear();
       matrix2Controller.clear();
     }else{
@@ -60,10 +66,10 @@ class _MatrixScreenState extends State<MatrixScreen> {
         mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: height*0.015,),
-            Text(matrixMode == 'operations' ? 'Two Matrix Operations' : 'One Matrix Operations'),
+            Text(matrixMode == matrixModes.operations ? 'Two Matrix Operations' : 'One Matrix Operations'),
             SizedBox(height: height*0.015,),
             DropdownButton<String>(
-              items: matrixModes.map((String value) {
+              items: matrixModesList.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -92,7 +98,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
               },
             ),
             SizedBox(height: height*0.015,),
-            matrixMode == 'operations'?
+            matrixMode == matrixModes.operations ?
               Row(
                 children: [
                   Spacer(flex: 1,),
@@ -104,7 +110,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
               ) :
               buildChip('Matrix1'),
             SizedBox(height: height*0.015,),
-            matrixMode == 'operations'? Form(
+            matrixMode == matrixModes.operations ? Form(
               key: _formKey1,
               child: Row(
                 children: [
@@ -129,8 +135,8 @@ class _MatrixScreenState extends State<MatrixScreen> {
             SizedBox(height: height*0.015,),
             
             RaisedButton(
-              shape: StadiumBorder(),
-              child: Text('Result'),
+              shape: const StadiumBorder(),
+              child: const Text('Result'),
               onPressed: (){
                 _formKey1.currentState.save();
 
@@ -139,7 +145,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
                 var dimension = matrixDimension.split('*');
 
                 print(newList1);
-                if(matrixMode == 'operations'){
+                if(matrixMode == matrixModes.operations){
                   var newList2 = matrixFormObject.fieldToList(matrix2Controller.text);
                   print(newList2);
                   setState(() {
@@ -154,13 +160,12 @@ class _MatrixScreenState extends State<MatrixScreen> {
               },
             ),
             SizedBox(height: height*0.015,),
-            Text(result.toString()),
+            Text(result == null ? '' : result.toString(), style: TextStyle(fontSize: 15),),
             SizedBox(height: height*0.015,),
           ],
         ),
     );
   }
-
 }
 
 class TextFormFieldMatrix extends StatelessWidget {
@@ -176,12 +181,12 @@ class TextFormFieldMatrix extends StatelessWidget {
     return TextFormField(
       controller: matrixController,
       keyboardType: TextInputType.number,
-      cursorRadius: Radius.circular(2),
+      cursorRadius: const Radius.circular(2),
       cursorWidth: 2,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          borderSide: BorderSide(
+      decoration: const InputDecoration(
+        border: const OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          borderSide: const BorderSide(
             color: Colors.black,
             style: BorderStyle.solid,
             width: 2
@@ -213,13 +218,13 @@ Widget matrixTextField (_index, String _text, TextEditingController _controller)
         hintStyle: TextStyle(
           color: Colors.grey.shade500
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
       ),
       key: ValueKey(_text),
       onSaved: (text){
         subMatrix.add(text);
       },
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.black
       ),
     ),

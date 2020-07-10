@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'distance_calc.dart';
-import '../calc_constants.dart';
+import '../bmi_constants.dart';
 import 'background_constant.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
@@ -15,7 +15,7 @@ class Modes extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView(
       padding: EdgeInsets.all(20),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),   
       children: [
         Consumer((context, read)=> GridItem(
             icon: Icons.settings,
@@ -31,7 +31,7 @@ class Modes extends StatelessWidget {
           icon: Icons.grid_on, 
           iconName: 'Matrix Operations', 
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen('operations'), color: kWhiteColor,)));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen(matrixModes.operations), color: kWhiteColor,)));
           },
         ),
 
@@ -39,7 +39,7 @@ class Modes extends StatelessWidget {
           icon: Icons.grid_on, 
           iconName: 'Matrix Transformations', 
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen('transformation'), color: kWhiteColor,)));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child : MatrixScreen(matrixModes.transformation), color: kWhiteColor,)));
           },
         ),
 
@@ -102,7 +102,10 @@ class GridItem extends StatelessWidget {
               size: 30,
             ),
             sizedBoxHeight,
-            Text(iconName, style: TextStyle(fontSize: 20),)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(iconName, style: TextStyle(fontSize: 20),softWrap: true,),
+            )
           ],
         ),
     );

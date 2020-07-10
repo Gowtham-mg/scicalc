@@ -34,14 +34,15 @@ class CalcHomePage extends StatelessWidget {
             return Expanded(
               flex: keyBoardType? 4 : 3,
               child: Container(
-                child:keyBoardType? SingleChildScrollView(
-                  child: Column(
+                child:SingleChildScrollView(
+                  child: keyBoardType? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: buildKeyboardScientificCalculator(),
-                  ),
-                ) : Column(
+                  ) : 
+                  Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: buildKeyboardSimpleCalculator(),
+                )
                 )
               ),
             );

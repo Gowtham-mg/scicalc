@@ -5,7 +5,7 @@ import '../../model/bmi_calc.dart';
 import '../../widgets/bmi_widgets/bmi_reusable_cards.dart';
 import '../../widgets/bmi_widgets/bmi_round_icon_button.dart';
 import '../../widgets/bmi_widgets/bmi_bottom_button.dart';
-import '../../calc_constants.dart';
+import '../../bmi_constants.dart';
 import '../../widgets/bmi_widgets/bmi_icon_content.dart';
 import 'bmi_results_page.dart';
 import '../background_constant.dart';
@@ -64,7 +64,7 @@ class _BMIScreenState extends State<BMIScreen> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('HEIGHT',style: klabelTextStyle,),
+                    Text('HEIGHT',style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98),),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -72,11 +72,11 @@ class _BMIScreenState extends State<BMIScreen> {
                       children: <Widget>[
                         Text(
                           height.toString(),
-                          style: knumberTextStyle,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)),
                         ),
-                        const Text(
+                        Text(
                           'cm',
-                          style: klabelTextStyle,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))
                         )
                       ],
                     ),
@@ -112,13 +112,13 @@ class _BMIScreenState extends State<BMIScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text(
+                        Text(
                           'WEIGHT',
-                          style: klabelTextStyle,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))
                         ),
                         Text(
                           weight.toString(),
-                          style: knumberTextStyle ,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)) ,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -150,13 +150,13 @@ class _BMIScreenState extends State<BMIScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text(
+                        Text(
                           'AGE',
-                          style: klabelTextStyle,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98),)
                         ),
                         Text(
                           age.toString(),
-                          style: knumberTextStyle,
+                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

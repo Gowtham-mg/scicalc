@@ -33,7 +33,7 @@ class KeyboardButton extends StatelessWidget {
             }else if(arithmetic.contains(button) || complex.contains(button)){
               exp += ' '+ button +' ';
               inputExpression.read(context).state = exp;
-            }else if(button == 'x!' || button == kInverse) {
+            }else if(button == 'x!' || button == kInverse || button == 'x^3') {
               exp += ' ' + button.substring(1) +' ';
               inputExpression.read(context).state = exp;
             }else if(button == knCr) {
