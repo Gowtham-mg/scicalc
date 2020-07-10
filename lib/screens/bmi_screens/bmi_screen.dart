@@ -8,7 +8,7 @@ import '../../widgets/bmi_widgets/bmi_bottom_button.dart';
 import '../../bmi_constants.dart';
 import '../../widgets/bmi_widgets/bmi_icon_content.dart';
 import 'bmi_results_page.dart';
-import '../background_constant.dart';
+import '../background_template.dart';
 
 
 enum Gender{

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scicalc/calc_constants.dart';
 
-import 'distance_calc.dart';
+import 'conversion_calc_template.dart';
 import '../bmi_constants.dart';
-import 'background_constant.dart';
+import 'background_template.dart';
 import 'matrix_screen.dart';
 import 'calc_home_page.dart';
 import 'bmi_screens/bmi_screen.dart';
@@ -56,7 +56,7 @@ class Modes extends StatelessWidget {
           icon: Icons.av_timer, 
           iconName: kSpeedScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'speed_calc', input1ModeInitialValue: 'mph', input2ModeInitialValue: 'kph'),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: ConversionCalcBackground(calcMode: 'speed_calc', input1ModeInitialValue: 'mph', input2ModeInitialValue: 'kph'),) ));
           },
         ),
 
@@ -64,7 +64,7 @@ class Modes extends StatelessWidget {
           icon: Icons.cloud, 
           iconName: kTemperatureScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'temperature_calc', input1ModeInitialValue: '°C', input2ModeInitialValue:'K'),) ));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: ConversionCalcBackground(calcMode: 'temperature_calc', input1ModeInitialValue: '°C', input2ModeInitialValue:'K'),) ));
           },
         ),
         
@@ -72,7 +72,7 @@ class Modes extends StatelessWidget {
           icon: Icons.directions_bike, 
           iconName: kDistanceScreenName,
           screen: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: DistanceCalc(calcMode: 'distance_calc', input1ModeInitialValue:'cm', input2ModeInitialValue:'km'))));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackGround(child: ConversionCalcBackground(calcMode: 'distance_calc', input1ModeInitialValue:'cm', input2ModeInitialValue:'km'))));
           },
         )
       ],

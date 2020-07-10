@@ -6,16 +6,16 @@ import '../helper/length_convert.dart';
 import '../helper/speed_convert.dart';
 import '../helper/temperature_convert.dart';
 
-class DistanceCalc extends StatefulWidget {
+class ConversionCalcBackground extends StatefulWidget {
   final String calcMode;
   final String input1ModeInitialValue;
   final String input2ModeInitialValue;
-  DistanceCalc({this.calcMode, this.input1ModeInitialValue, this.input2ModeInitialValue});
+  ConversionCalcBackground({this.calcMode, this.input1ModeInitialValue, this.input2ModeInitialValue});
   @override
-  _DistanceCalcState createState() => _DistanceCalcState();
+  _ConversionCalcBackgroundState createState() => _ConversionCalcBackgroundState();
 }
 
-class _DistanceCalcState extends State<DistanceCalc> {
+class _ConversionCalcBackgroundState extends State<ConversionCalcBackground> {
 
   var input1controller = TextEditingController(text: '');
 

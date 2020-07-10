@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:scicalc/calc_constants.dart';
-import 'background_constant.dart';
+import 'background_template.dart';
 import '../widgets/keyboard_row.dart';
 import '../helper/calc_helper.dart';
 import 'modes_of_calc.dart';
