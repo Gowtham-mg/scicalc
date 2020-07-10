@@ -8,15 +8,16 @@ class IconContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(
           icon,
-          size: MediaQuery.of(context).size.height*0.15,
+          size: deviceHeight*0.15,
         ),
         sizedBoxHeight,
-        Text(label,style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))
+        Text(label,style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98))
         )
       ],
     );

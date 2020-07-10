@@ -96,6 +96,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
     return Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +105,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height*0.3,),
+                  SizedBox(height: deviceHeight*0.3,),
                   DropdownButton<String>(
                       items: calcDropDownButtons.map((String value) {
                         return DropdownMenuItem<String>(
@@ -154,7 +155,7 @@ class _DistanceCalcState extends State<DistanceCalc> {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height*0.3,),
+                  SizedBox(height: deviceHeight*0.3,),
                   DropdownButton<String>(
                       items: calcDropDownButtons.map((String value) {
                         return DropdownMenuItem<String>(

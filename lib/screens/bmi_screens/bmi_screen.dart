@@ -29,6 +29,7 @@ class _BMIScreenState extends State<BMIScreen> {
   int age = 20;
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
     return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -64,7 +65,7 @@ class _BMIScreenState extends State<BMIScreen> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('HEIGHT',style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98),),),
+                    Text('HEIGHT',style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98),),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -72,11 +73,11 @@ class _BMIScreenState extends State<BMIScreen> {
                       children: <Widget>[
                         Text(
                           height.toString(),
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)),
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)),
                         ),
                         Text(
                           'cm',
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))
+                          style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98))
                         )
                       ],
                     ),
@@ -114,11 +115,11 @@ class _BMIScreenState extends State<BMIScreen> {
                       children: <Widget>[
                         Text(
                           'WEIGHT',
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))
+                          style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98))
                         ),
                         Text(
                           weight.toString(),
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)) ,
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)) ,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -152,11 +153,11 @@ class _BMIScreenState extends State<BMIScreen> {
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98),)
+                          style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98),)
                         ),
                         Text(
                           age.toString(),
-                          style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.08, color: Color(0xFF8D8E98)),
+                          style: TextStyle(fontSize: deviceHeight*0.08, color: Color(0xFF8D8E98)),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

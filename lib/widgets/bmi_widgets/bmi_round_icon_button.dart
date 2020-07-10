@@ -7,11 +7,12 @@ class RoundIconButton extends StatelessWidget {
   final Function onPressed;
   @override
   Widget build(BuildContext context) {
+    final deviceSize = MediaQuery.of(context).size;
     return RawMaterialButton(
       child: Icon(icon),
       shape: CircleBorder(),
       fillColor: kWhiteColor,
-      constraints: BoxConstraints.tightFor(width: MediaQuery.of(context).size.width*0.08,height: MediaQuery.of(context).size.width*0.08),
+      constraints: BoxConstraints.tightFor(width: deviceSize.width*0.08,height: deviceSize.width*0.08),
       elevation: 2.0,
       onPressed: onPressed,
     );
