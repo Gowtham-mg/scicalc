@@ -59,7 +59,7 @@ class BuildExpressionClass{
         ..prefix(string(kExponentialSign).trim(), (op, l) => math.exp(l));
 
     builder.group()
-        ..prefix(string('factorial').trim(), (l,op) => 1);
+        ..postfix(string('fact').trim(), (l,op) => factorial(l));
         
     builder.group()
         ..prefix(string(kSinh).trim(), (op, l) => ((math.exp(l)) - math.exp(-l))/2);

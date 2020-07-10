@@ -15,5 +15,5 @@ String getCalculatedSpeed(input1Mode, input2Mode, parsedValue){
       case 'kt': parsedValue = parsedValue / 1.852;break;
       default: break;
     }
-    return parsedValue.toStringAsFixed(4);
+    return parsedValue.toStringAsFixed(2);
 }

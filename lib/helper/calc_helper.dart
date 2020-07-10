@@ -57,9 +57,10 @@ void _calculateScientificCalculator(){
   parser = expressionBuilder.build();
   print('tempExpression $tempExpression');
   tempExpression = tempExpression.replaceAll(kPiSign, 'pi');
-  tempExpression = tempExpression.replaceAll('!', 'factorial');
+  tempExpression = tempExpression.replaceAll('!', 'fact');
   tempExpression = tempExpression.replaceAll(kMultiplicationSign, '*');
   tempExpression = tempExpression.replaceAll(kDivisionSign, '/');
+  print('tempExpression $tempExpression');
 
   _tryComputeResult();
 }
