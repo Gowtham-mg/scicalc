@@ -68,6 +68,11 @@ class _MatrixScreenState extends State<MatrixScreen> {
             SizedBox(height: height*0.015,),
             Text(matrixMode == matrixModes.operations ? 'Two Matrix Operations' : 'One Matrix Operations'),
             SizedBox(height: height*0.015,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text('Please Enter each element of matrix comma separated with appropriate dimensions'),
+            ),
+            SizedBox(height: height*0.015,),
             DropdownButton<String>(
               items: matrixModesList.map((String value) {
                 return DropdownMenuItem<String>(
@@ -138,26 +143,39 @@ class _MatrixScreenState extends State<MatrixScreen> {
               shape: const StadiumBorder(),
               child: const Text('Result'),
               onPressed: (){
-                _formKey1.currentState.save();
-
-                var newList1 = matrixFormObject.fieldToList(matrix1Controller.text);
-                
                 var dimension = matrixDimension.split('*');
-
+                _formKey1.currentState.save();
+                
+                var newList1 = matrixFormObject.fieldToList(matrix1Controller.text);
                 print(newList1);
                 if(matrixMode == matrixModes.operations){
                   var newList2 = matrixFormObject.fieldToList(matrix2Controller.text);
-                  print(newList2);
-                  setState(() {
-                    result = matrixFormObject.calculateOperations(inputMode, newList1, newList2, int.parse(dimension[0]), int.parse(dimension[1]));
-                  });
+                  if((newList1.length != int.parse(dimension[0])* int.parse(dimension[1])) || (newList2.length != int.parse(dimension[0])* int.parse(dimension[1]))){
+                    showDialog(context: context, builder: (BuildContext context){
+                      return AlertDialog(content: Text('Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),);
+                    });
+                  }
+                  else{
+                    print(newList2);
+                    setState(() {
+                      result = matrixFormObject.calculateOperations(inputMode, newList1, newList2, int.parse(dimension[0]), int.parse(dimension[1]));
+                    });
+                  }
                 }
                 else{
-                  setState(() {
-                    result = matrixFormObject.calculateTransform(inputMode, newList1, int.parse(dimension[0]), int.parse(dimension[1]));
-                  });
+                  print('transp ${matrix1Controller.text.length}');
+                  if(newList1.length != int.parse(dimension[0]) * int.parse(dimension[1])){
+                    showDialog(context: context, builder: (BuildContext context){
+                      return AlertDialog(content: Text('Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),);
+                    });
+                  }
+                  else{
+                    setState(() {
+                      result = matrixFormObject.calculateTransform(inputMode, newList1, int.parse(dimension[0]), int.parse(dimension[1]));
+                    });
+                  }
                 }
-              },
+              }
             ),
             SizedBox(height: height*0.015,),
             Text(result == null ? '' : result.toString(), style: TextStyle(fontSize: 15),),
