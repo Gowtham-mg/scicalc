@@ -103,7 +103,7 @@ class GridItem extends StatelessWidget {
               size: 30,
             ),
             sizedBoxHeight,
-            Text(iconName, style: TextStyle(fontSize: 20),softWrap: true,),
+            Text(iconName, style: TextStyle(fontSize: 20),maxLines: 2, textAlign: TextAlign.center,),
           ],
         ),
     );

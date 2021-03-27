@@ -42,7 +42,7 @@ class _BMIScreenState extends State<BMIScreen> {
                       selectedGender = Gender.male;
                     });
                   },
-                  colour: selectedGender == Gender.male ? kWhiteColor : kWhiteColor,
+                  colour: selectedGender == Gender.male ? Colors.redAccent.shade200.withOpacity(0.5) : kWhiteColor,
                   cardChild: IconContent(icon:FontAwesomeIcons.mars,label: 'MALE',),
                 ),
               ),
@@ -53,7 +53,7 @@ class _BMIScreenState extends State<BMIScreen> {
                         selectedGender = Gender.female;
                       });
                     },
-                    colour: selectedGender == Gender.female ? kWhiteColor : kWhiteColor,
+                    colour: selectedGender == Gender.female ? Colors.redAccent.shade200.withOpacity(0.5) : kWhiteColor,
                     cardChild: IconContent(icon:FontAwesomeIcons.venus,label: 'FEMALE',),
                   ),
               ),

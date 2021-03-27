@@ -3,7 +3,6 @@ import 'package:scicalc/calc_constants.dart';
 
 import 'modes_of_calc.dart';
 
-
 class BackGround extends StatelessWidget {
   final Widget child;
   final color;
@@ -19,16 +18,15 @@ class BackGround extends StatelessWidget {
         centerTitle: true,
       ),
       body: PageView(
-        onPageChanged: (index){
+        onPageChanged: (index) {
           print('pageviewindex $index');
         },
-        children:[
+        children: [
+          Container(padding: EdgeInsets.fromLTRB(10, 15, 10, 10), child: child),
           Container(
-            padding: EdgeInsets.fromLTRB(10, 15, 10, 10),
-            child: child
-          ),
-          Container(child: Modes(),)
-        ]
+            child: Modes(),
+          )
+        ],
       ),
     );
   }
