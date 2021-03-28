@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:scicalc/model/bmi_calc.dart';
+import 'package:scicalc/screens/background_template.dart';
 
 import '../../widgets/bmi_widgets/bmi_bottom_button.dart';
 import '../../bmi_constants.dart';
 import '../../widgets/bmi_widgets/bmi_reusable_cards.dart';
 
-
-class ResultsPage extends StatelessWidget{
-  ResultsPage({@required this.bmiResult,@required this.resultText,@required this.interpretation});
-  final String bmiResult;
-  final String resultText;
-  final String interpretation;
+class ResultsPage extends StatelessWidget {
+  ResultsPage({@required this.bmiResult});
+  final BmiCalc bmiResult;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return BackGround(
+      color: kWhiteColor,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -21,7 +22,13 @@ class ResultsPage extends StatelessWidget{
             child: Container(
               padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomCenter,
-              child: Text('Your Result',style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.03, color: Color(0xFF8D8E98))),
+              child: Text(
+                'Your Result',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.03,
+                  color: Color(0xFF8D8E98),
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -32,14 +39,24 @@ class ResultsPage extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text(resultText.toUpperCase(),style: kresultTextStyle,),
-                  Text(bmiResult,style: kBmiTextStyle,),
-                  Text(interpretation,style: kBodyTextStyle,textAlign: TextAlign.center,),
+                  Text(
+                    bmiResult.getResult().toUpperCase(),
+                    style: kresultTextStyle,
+                  ),
+                  Text(
+                    bmiResult.calculationBMI(),
+                    style: kBmiTextStyle,
+                  ),
+                  Text(
+                    bmiResult.getInterpretation(),
+                    style: kBodyTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                   BottomButton(
-                    buttonTitle: 'RE-CALCULATE', 
-                    onTap: (){
+                    buttonTitle: 'RE-CALCULATE',
+                    onTap: () {
                       Navigator.pop(context);
-                    }, 
+                    },
                     colour: Colors.white70,
                   )
                 ],
@@ -47,6 +64,7 @@ class ResultsPage extends StatelessWidget{
             ),
           )
         ],
-      );
+      ),
+    );
   }
 }

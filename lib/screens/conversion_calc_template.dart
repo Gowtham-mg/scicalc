@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scicalc/screens/background_template.dart';
 
 import '../bmi_constants.dart';
 import '../calc_constants.dart';
@@ -113,124 +114,130 @@ class _ConversionCalcBackgroundState extends State<ConversionCalcBackground> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          getTitle(),
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+    return BackGround(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            getTitle(),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            sizedBoxWidth,
-            Expanded(
-              child: Column(children: [
-                sizedBoxHeight,
-                Text(''),
-                SizedBox(
-                  height: deviceHeight * 0.28,
-                ),
-                DropdownButton<String>(
-                  items: calcDropDownButtons.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: input1Mode,
-                  onChanged: (val) {
-                    setState(() {
-                      isInput1ModeChanged = true;
-                      input1Mode = val;
-                      convertDistance();
-                    });
-                  },
-                ),
-                TextField(
-                  controller: input1controller,
-                  keyboardType: TextInputType.number,
-                  cursorRadius: Radius.circular(2),
-                  cursorWidth: 2,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide: BorderSide(
-                        color: Colors.black,
-                        style: BorderStyle.solid,
-                        width: 2),
-                  )),
-                  onChanged: (value) {
-                    setState(() {
-                      print('value1: $value');
-                      isInput1Changed = true;
-                      isInput1ModeChanged = true;
-                      input1 = value;
-                      print('isInput1Changed: $isInput1Changed');
-                      convertDistance();
-                    });
-                  },
-                ),
-              ]),
-            ),
-            sizedBoxWidth,
-            Expanded(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: deviceHeight * 0.3,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: 10.0, bottom: deviceHeight * 0.28),
+                        child: Text(widget.calcMode),
+                      ),
+                      DropdownButton<String>(
+                        items: calcDropDownButtons.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        value: input1Mode,
+                        onChanged: (val) {
+                          setState(() {
+                            isInput1ModeChanged = true;
+                            input1Mode = val;
+                            convertDistance();
+                          });
+                        },
+                      ),
+                      TextField(
+                        controller: input1controller,
+                        keyboardType: TextInputType.number,
+                        cursorRadius: Radius.circular(2),
+                        cursorWidth: 2,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            print('value1: $value');
+                            isInput1Changed = true;
+                            isInput1ModeChanged = true;
+                            input1 = value;
+                            print('isInput1Changed: $isInput1Changed');
+                            convertDistance();
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                  DropdownButton<String>(
-                    items: calcDropDownButtons.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    value: input2Mode,
-                    onChanged: (val) {
-                      setState(() {
-                        isInput1ModeChanged = false;
-                        input2Mode = val;
-                        convertDistance();
-                      });
-                    },
-                  ),
-                  TextField(
-                    controller: input2controller,
-                    keyboardType: TextInputType.number,
-                    cursorRadius: Radius.circular(2),
-                    cursorWidth: 2,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide: BorderSide(
-                          color: Colors.black,
-                          style: BorderStyle.solid,
-                          width: 2),
-                    )),
-                    onChanged: (value) {
-                      setState(() {
-                        print('value2: $value');
-                        isInput1Changed = false;
-                        isInput1ModeChanged = false;
-                        input2 = value;
-                        print('isInput1Changed: $isInput1Changed');
-                        convertDistance();
-                      });
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-            sizedBoxWidth
-          ],
-        ),
-      ],
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0, top: deviceHeight * 0.3),
+                  child: Column(
+                    children: [
+                      DropdownButton<String>(
+                        items: calcDropDownButtons.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        value: input2Mode,
+                        onChanged: (val) {
+                          setState(() {
+                            isInput1ModeChanged = false;
+                            input2Mode = val;
+                            convertDistance();
+                          });
+                        },
+                      ),
+                      TextField(
+                        controller: input2controller,
+                        keyboardType: TextInputType.number,
+                        cursorRadius: Radius.circular(2),
+                        cursorWidth: 2,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          borderSide: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 2),
+                        )),
+                        onChanged: (value) {
+                          setState(() {
+                            print('value2: $value');
+                            isInput1Changed = false;
+                            isInput1ModeChanged = false;
+                            input2 = value;
+                            print('isInput1Changed: $isInput1Changed');
+                            convertDistance();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

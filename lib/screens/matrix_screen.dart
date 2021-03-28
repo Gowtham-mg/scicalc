@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:scicalc/screens/background_template.dart';
 import '../calc_constants.dart';
 import '../bmi_constants.dart';
 import '../model/matrix_calc.dart';
 
-List matrix2 = List();
-List matrix1 = List();
+enum MatrixModes { operations, transformation }
 List subMatrix = List();
 
-enum matrixModes { operations, transformation }
-
 class MatrixScreen extends StatefulWidget {
-  final matrixModes matrixMode;
+  final MatrixModes matrixMode;
   MatrixScreen(this.matrixMode);
   @override
   _MatrixScreenState createState() => _MatrixScreenState();
@@ -37,10 +35,10 @@ class _MatrixScreenState extends State<MatrixScreen> {
 
   @override
   void initState() {
-    inputMode = widget.matrixMode == matrixModes.operations
+    inputMode = widget.matrixMode == MatrixModes.operations
         ? kMatrixAddition
         : kMatrixTranspose;
-    matrixModesList = widget.matrixMode == matrixModes.operations
+    matrixModesList = widget.matrixMode == MatrixModes.operations
         ? kTwoMatrixOperations
         : kSingleMatrixOperations;
     super.initState();
@@ -48,7 +46,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
 
   @override
   void dispose() {
-    if (widget.matrixMode == matrixModes.operations) {
+    if (widget.matrixMode == MatrixModes.operations) {
       matrix1Controller.clear();
       matrix2Controller.clear();
     } else {
@@ -61,110 +59,115 @@ class _MatrixScreenState extends State<MatrixScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final matrixMode = widget.matrixMode;
-    return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: SizedBox(
-        height: height - MediaQuery.of(context).viewPadding.vertical - AppBar().preferredSize.height,
-        child: Column(
-          children: [
-            Spacer(flex: 1),
-            Text(
-              matrixMode == matrixModes.operations
-                  ? 'Two Matrix Operations'
-                  : 'One Matrix Operations',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Spacer(flex: 1),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                'Please Enter each element of matrix comma separated with appropriate dimensions',
+    return BackGround(
+      color: kWhiteColor,
+      child: SingleChildScrollView(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: SizedBox(
+          height: height -
+              MediaQuery.of(context).viewPadding.vertical -
+              AppBar().preferredSize.height,
+          child: Column(
+            children: [
+              Spacer(flex: 1),
+              Text(
+                matrixMode == MatrixModes.operations
+                    ? 'Two Matrix Operations'
+                    : 'One Matrix Operations',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-            Spacer(flex: 1),
-            DropdownButton<String>(
-              items: matrixModesList.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              value: inputMode,
-              onChanged: (val) {
-                setState(() {
-                  inputMode = val;
-                });
-              },
-            ),
-            Spacer(flex: 1),
-            DropdownButton<String>(
-              items: kMatrixOperationDimensions.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              value: matrixDimension,
-              onChanged: (val) {
-                setState(() {
-                  matrixDimension = val;
-                });
-              },
-            ),
-            Spacer(flex: 1),
-            matrixMode == matrixModes.operations
-                ? Row(
-                    children: [
-                      Spacer(
-                        flex: 1,
+              Spacer(flex: 1),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  'Please Enter each element of matrix comma separated with appropriate dimensions',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              Spacer(flex: 1),
+              DropdownButton<String>(
+                items: matrixModesList.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                value: inputMode,
+                onChanged: (val) {
+                  setState(() {
+                    inputMode = val;
+                  });
+                },
+              ),
+              Spacer(flex: 1),
+              DropdownButton<String>(
+                items: kMatrixOperationDimensions.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                value: matrixDimension,
+                onChanged: (val) {
+                  setState(() {
+                    matrixDimension = val;
+                  });
+                },
+              ),
+              Spacer(flex: 1),
+              matrixMode == MatrixModes.operations
+                  ? Row(
+                      children: [
+                        Spacer(flex: 1),
+                        Chip(label: Text('Matrix1')),
+                        Spacer(flex: 2),
+                        Chip(label: Text('Matrix2')),
+                        Spacer(flex: 1),
+                      ],
+                    )
+                  : Chip(label: Text('Matrix1')),
+              Spacer(flex: 1),
+              matrixMode == MatrixModes.operations
+                  ? Form(
+                      key: _formKey1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: TextFormFieldMatrix(
+                                  matrixController: matrix1Controller),
+                            ),
+                            SizedBox(width: 10),
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: TextFormFieldMatrix(
+                                  matrixController: matrix2Controller),
+                            ),
+                          ],
+                        ),
                       ),
-                      buildChip('Matrix1'),
-                      Spacer(
-                        flex: 2,
-                      ),
-                      buildChip('Matrix2'),
-                      Spacer(
-                        flex: 1,
-                      ),
-                    ],
-                  )
-                : buildChip('Matrix1'),
-            Spacer(flex: 1),
-            matrixMode == matrixModes.operations
-                ? Form(
-                    key: _formKey1,
-                    child: Row(children: [
-                      sizedBoxWidth,
-                      Flexible(
-                          fit: FlexFit.loose,
-                          child: TextFormFieldMatrix(
-                              matrixController: matrix1Controller)),
-                      sizedBoxWidth,
-                      Flexible(
-                          fit: FlexFit.loose,
-                          child: TextFormFieldMatrix(
-                              matrixController: matrix2Controller)),
-                      sizedBoxWidth,
-                    ]),
-                  )
-                : Form(
-                    key: _formKey1,
-                    child: Flexible(
+                    )
+                  : Form(
+                      key: _formKey1,
+                      child: Flexible(
                         fit: FlexFit.loose,
                         child: TextFormFieldMatrix(
-                            matrixController: matrix1Controller)),
-                  ),
-            Spacer(flex: 1),
-            RaisedButton(
+                            matrixController: matrix1Controller),
+                      ),
+                    ),
+              Spacer(flex: 1),
+              RaisedButton(
                 shape: const StadiumBorder(),
                 child: const Text('Result'),
                 onPressed: () {
@@ -174,30 +177,34 @@ class _MatrixScreenState extends State<MatrixScreen> {
                   var newList1 =
                       matrixFormObject.fieldToList(matrix1Controller.text);
                   print(newList1);
-                  if (matrixMode == matrixModes.operations) {
+                  if (matrixMode == MatrixModes.operations) {
                     var newList2 =
                         matrixFormObject.fieldToList(matrix2Controller.text);
                     if ((newList1.length !=
-                            int.parse(dimension[0]) * int.parse(dimension[1])) ||
+                            int.parse(dimension[0]) *
+                                int.parse(dimension[1])) ||
                         (newList2.length !=
-                            int.parse(dimension[0]) * int.parse(dimension[1]))) {
+                            int.parse(dimension[0]) *
+                                int.parse(dimension[1]))) {
                       showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: Text(
-                                  'Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),
-                            );
-                          });
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Text(
+                                'Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),
+                          );
+                        },
+                      );
                     } else {
                       print(newList2);
                       setState(() {
                         result = matrixFormObject.calculateOperations(
-                            inputMode,
-                            newList1,
-                            newList2,
-                            int.parse(dimension[0]),
-                            int.parse(dimension[1]));
+                          inputMode,
+                          newList1,
+                          newList2,
+                          int.parse(dimension[0]),
+                          int.parse(dimension[1]),
+                        );
                       });
                     }
                   } else {
@@ -215,22 +222,24 @@ class _MatrixScreenState extends State<MatrixScreen> {
                     } else {
                       setState(() {
                         result = matrixFormObject.calculateTransform(
-                            inputMode,
-                            newList1,
-                            int.parse(dimension[0]),
-                            int.parse(dimension[1]));
+                          inputMode,
+                          newList1,
+                          int.parse(dimension[0]),
+                          int.parse(dimension[1]),
+                        );
                       });
                     }
                   }
-                }),
-            Spacer(flex: 1),
-            Text(
-              result == null ? '' : result.toString(),
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
-            Spacer(flex:1),
-
-          ],
+                },
+              ),
+              Spacer(flex: 1),
+              Text(
+                result == null ? '' : result.toString(),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
+              Spacer(flex: 1),
+            ],
+          ),
         ),
       ),
     );
@@ -262,12 +271,6 @@ class TextFormFieldMatrix extends StatelessWidget {
           print('value1: $value');
         });
   }
-}
-
-Chip buildChip(String text) {
-  return Chip(
-    label: Text(text),
-  );
 }
 
 Widget matrixTextField(

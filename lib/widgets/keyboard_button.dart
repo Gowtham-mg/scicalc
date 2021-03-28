@@ -12,51 +12,52 @@ class KeyboardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: MaterialButton(
-          shape: const CircleBorder(),
-          color: const Color(0xFFFFFFFF),
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Container(
-            padding: const EdgeInsets.all(5),
-            alignment: Alignment.center,
-            child: Text(
-              button,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 23.0),
+        shape: const CircleBorder(),
+        color: const Color(0xFFFFFFFF),
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Container(
+          padding: const EdgeInsets.all(5),
+          alignment: Alignment.center,
+          child: Text(
+            button,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 23.0,
             ),
           ),
-          onPressed: () {
-            print('button $button');
-            var exp = inputExpression.read(context).state;
-            if(evalSpecialCharacters.contains(button) || button == '+/-'){
-              evaluate(context, exp, button);
-            }else if(arithmetic.contains(button) || complex.contains(button)){
-              exp += ' '+ button +' ';
-              inputExpression.read(context).state = exp;
-            }else if(button == 'x!' || button == kInverse || button == 'x^3') {
-              exp += ' ' + button.substring(1) +' ';
-              inputExpression.read(context).state = exp;
-            }else if(button == knCr) {
-              exp += ' ' + 'C' +' ';
-              inputExpression.read(context).state = exp;
-            }else if(button == kSqrtOfHalf) {
-              exp += ' ' + math.sqrt1_2.toString() +' ';
-              inputExpression.read(context).state = exp;
-            }else if(button == knPr) {
-              exp += ' ' + 'P' +' ';
-              inputExpression.read(context).state = exp;
-            }else if(button == kPowerSign) {
-              exp += ' ' + '^' +' ';
-              inputExpression.read(context).state = exp;
-            }else{
-              print(button);
-              exp += button;
-              inputExpression.read(context).state = exp;            
-            }
-            print(exp);
-            print(keyboardType.read(context).state);
-          },
         ),
+        onPressed: () {
+          print('button $button');
+          var exp = inputExpression.read(context).state;
+          if (evalSpecialCharacters.contains(button) || button == '+/-') {
+            evaluate(context, exp, button);
+          } else if (arithmetic.contains(button) || complex.contains(button)) {
+            exp += ' ' + button + ' ';
+            inputExpression.read(context).state = exp;
+          } else if (button == 'x!' || button == kInverse || button == 'x^3') {
+            exp += ' ' + button.substring(1) + ' ';
+            inputExpression.read(context).state = exp;
+          } else if (button == knCr) {
+            exp += ' ' + 'C' + ' ';
+            inputExpression.read(context).state = exp;
+          } else if (button == kSqrtOfHalf) {
+            exp += ' ' + math.sqrt1_2.toString() + ' ';
+            inputExpression.read(context).state = exp;
+          } else if (button == knPr) {
+            exp += ' ' + 'P' + ' ';
+            inputExpression.read(context).state = exp;
+          } else if (button == kPowerSign) {
+            exp += ' ' + '^' + ' ';
+            inputExpression.read(context).state = exp;
+          } else {
+            print(button);
+            exp += button;
+            inputExpression.read(context).state = exp;
+          }
+          print(exp);
+          print(keyboardType.read(context).state);
+        },
+      ),
     );
   }
 }

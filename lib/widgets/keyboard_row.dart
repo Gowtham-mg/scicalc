@@ -9,20 +9,10 @@ class KeyboardRows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: buttonsFunc(),
+      children: rowsButtons
+          .map((String buttonText) => KeyboardButton(button: buttonText))
+          .toList(),
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     );
-  }
-
-  List<Widget> buttonsFunc() {
-    List<Widget> buttons = [];
-    rowsButtons.forEach((String buttonText) {
-      buttons.add(
-        KeyboardButton(
-          button: buttonText
-        ),
-      );
-    });
-    return buttons;
   }
 }

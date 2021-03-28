@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:scicalc/routes.dart';
 import 'calc_constants.dart';
-import 'screens/calc_home_page.dart';
 
 
 void main() {
@@ -19,7 +18,8 @@ class SciCalc extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CalcHomePage(),
+      onGenerateRoute: Routes.routeGenerator,
+      initialRoute: Routes.home,
     );
   }
 }

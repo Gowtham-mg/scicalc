@@ -24,7 +24,3 @@ const kBodyTextStyle = TextStyle(
   fontSize: 22.0,
 );
 
-
-const Widget sizedBoxWidth = SizedBox(width: 10,);
-
-const Widget sizedBoxHeight = SizedBox(width: 10,);

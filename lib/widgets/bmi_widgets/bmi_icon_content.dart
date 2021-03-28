@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../bmi_constants.dart';
 
 class IconContent extends StatelessWidget {
-  IconContent({this.icon,this.label});
+  IconContent({this.icon, this.label});
   final IconData icon;
   final String label;
 
@@ -14,10 +14,17 @@ class IconContent extends StatelessWidget {
       children: <Widget>[
         Icon(
           icon,
-          size: deviceHeight*0.15,
+          size: deviceHeight * 0.15,
         ),
-        sizedBoxHeight,
-        Text(label,style: TextStyle(fontSize: deviceHeight*0.03, color: Color(0xFF8D8E98))
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: deviceHeight * 0.03,
+              color: Color(0xFF8D8E98),
+            ),
+          ),
         )
       ],
     );

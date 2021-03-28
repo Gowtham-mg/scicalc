@@ -8,7 +8,7 @@ class ReusableBMICard extends StatelessWidget {
   final Function onPress;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onPress,
       child: Container(
         child: cardChild,

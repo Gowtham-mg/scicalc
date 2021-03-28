@@ -18,14 +18,10 @@ class BackGround extends StatelessWidget {
         centerTitle: true,
       ),
       body: PageView(
-        onPageChanged: (index) {
-          print('pageviewindex $index');
-        },
+        onPageChanged: (index) {},
         children: [
           Container(padding: EdgeInsets.fromLTRB(10, 15, 10, 10), child: child),
-          Container(
-            child: Modes(),
-          )
+          Container(child: Modes())
         ],
       ),
     );
