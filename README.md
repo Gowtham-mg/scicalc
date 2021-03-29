@@ -1,8 +1,9 @@
 # Scicalc
 
 ## Technical description
- - flutter_riverpod - state management solution
- - few packages like petitparser, expressions and others to parse and evaluate the input expression.
+
+- flutter_riverpod - state management solution
+- few packages like petitparser, expressions and others to parse and evaluate the input expression.
 
 ## Features
 
@@ -40,7 +41,7 @@ Supported operations:
 
 The calc screen is just a pageview which we can slide and choose any other options to to change the view of calc to the selected option.
 
-![advanced calc screenshot](screenshots/options.png)
+<img src="screenshots/options.png" alt="advanced calc screenshot" width="300"/>
 
 If basic option is shown, the option will be advanced or if it is advanced, the option will be basic
 
@@ -50,47 +51,54 @@ This BMI calculator's design is inspired from Angela Yu's BMI calculator.
 
 ### Input screen
 
-![bmi calc input screenshot](screenshots/bmi.png)
+<img src="screenshots/bmi.png" alt="bmi calc input screenshot" width="300"/>
 
 ### Result screen
 
-![bmi calc result screenshot](screenshots/result.png)
+<img src="screenshots/result.png" alt="bmi calc result screenshot" width="300"/>
 
 # Speed, Distance & Temperature calculation
 
 Speed distance and temperature conversion UI looks almost same, with two dropdowns for from and to conversion and on value changed from one input box, we can get the result on the other and vice versa too.
 
-![distance calc screenshot](screenshots/distance.png)
+<img src="screenshots/distance.png" alt="distance calc screenshot" width="300"/>
 
 # Matrix-Operations
 
 ## Matrix-Transposition
 
-We need to select the dimension of our matrix from the dropdown and enter the matrix values in the input box as **comma-separated**. For Eg: A 2*2 matrix values can be 1,2,3,4 or any 4 values and on result is tapped, the result is shown below the result button.
+We need to select the dimension of our matrix from the dropdown and enter the matrix values in the input box as **comma-separated**. For Eg: A 2\*2 matrix values can be 1,2,3,4 or any 4 values and on result is tapped, the result is shown below the result button.
 
 ### Supported matrix operations in Matrix-transposition mode:
----
- - [x] Matrix Transposition
- - [x] Matrix row-wise reduce
- - [x] Matrix column-wise reduce
- - [x] Sum of matrix elements
- - [x] Product of matrix elements
- - [x] Max value of Matrix
- - [x] Min value of Matrix
----
-
-![matrix-transposition screenshot](screenshots/matrix-transposition.png)
 
 ---
+
+- [x] Matrix Transposition
+- [x] Matrix row-wise reduce
+- [x] Matrix column-wise reduce
+- [x] Sum of matrix elements
+- [x] Product of matrix elements
+- [x] Max value of Matrix
+- [x] Min value of Matrix
+
+---
+
+<img src="screenshots/matrix-transposition.png" alt="matrix-transposition screenshot" width="300"/>
+
+---
+
 ### Supported Matrix operations:
----
- - [x] Add Two Matrix
- - [x] Add Matrix & Scalar
- - [x] Multiply Matrix & vector
- - [x] Multiply two Matrix
- - [x] Multiply Matrix & Scalar
- - [x] Element-wise Matrix Product
- - [x] Element-wise Matrix Subtraction
+
 ---
 
-![matrix-operation screenshot](screenshots/matrix-operation.png)
+- [x] Add Two Matrix
+- [x] Add Matrix & Scalar
+- [x] Multiply Matrix & vector
+- [x] Multiply two Matrix
+- [x] Multiply Matrix & Scalar
+- [x] Element-wise Matrix Product
+- [x] Element-wise Matrix Subtraction
+
+---
+
+<img src="screenshots/matrix-operation.png" alt="matrix-operation screenshot" width="300"/>

@@ -212,13 +212,14 @@ class _MatrixScreenState extends State<MatrixScreen> {
                     if (newList1.length !=
                         int.parse(dimension[0]) * int.parse(dimension[1])) {
                       showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: Text(
-                                  'Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),
-                            );
-                          });
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Text(
+                                'Number of values entered doesn\'t match the dimension of the matrix. Eg: 2*2 matrix should have 4 values (comma-separated)'),
+                          );
+                        },
+                      );
                     } else {
                       setState(() {
                         result = matrixFormObject.calculateTransform(
